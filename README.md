@@ -1,8 +1,10 @@
 # 🏨 Hotel Booking App (Advanced SPA)
 
-> 🚀 **Live Demo:** [https://booking-hotel-app-theta.vercel.app/](https://booking-hotel-app-theta.vercel.app/)
-
 A comprehensive, production-ready React application for booking hotels. This project focuses on advanced state management, interactive maps, and modern frontend architecture.
+
+## 🔗 Live Demo
+
+[View Live Application](https://booking-hotel-app-theta.vercel.app/)
 
 ## ✨ Core Features
 
@@ -34,4 +36,4 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/booking-hotel-app.git](https://github.com/your-username/booking-hotel-app.git)
+   git clone [https://github.com/mahdimoradi-tech/booking-hotel-app.git](https://github.com/mahdimoradi-tech/booking-hotel-app.git)
