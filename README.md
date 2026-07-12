@@ -19,7 +19,7 @@ A comprehensive, production-ready React application for booking hotels. This pro
 ## 🛠️ Tech Stack
 
 * **Frontend Framework:** React 19 (Vite)
-* **Styling:** Tailwind CSS 4
+* **Styling:** Custom CSS (Modular structure)
 * **Routing:** React Router DOM 7
 * **State Management:** Context API + useReducer
 * **Map Integration:** Leaflet & React-Leaflet
