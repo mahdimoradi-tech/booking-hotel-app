@@ -1,16 +1,23 @@
-import './App.css'
-import { Toaster } from "react-hot-toast";
-import Header from './components/Header/Header';
-import LocationList from './components/LocationList/LocationList';
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+import LocationList from "./components/LocationList/LocationList";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <LocationList />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div>
-      <Toaster/>
-      <Header/>
-      <LocationList/>
-    </div>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
