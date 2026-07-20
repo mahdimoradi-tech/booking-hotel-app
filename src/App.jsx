@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import LocationList from "./components/LocationList/LocationList";
 import AppLayout from "./components/AppLayout/AppLayout";
+import Hotels from "./components/Hotels/Hotels";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
         path: "hotels",
         Component: AppLayout,
         children: [
-          { index: true, element: <p>Founded Hotels List</p> },
+          { index: true, Component: Hotels },
           {
             path: ":id",
             element: <p>single hotel data</p>,
