@@ -5,6 +5,7 @@ import LocationList from "./components/LocationList/LocationList";
 import AppLayout from "./components/AppLayout/AppLayout";
 import Hotels from "./components/Hotels/Hotels";
 import SingleHotel from "./components/SingleHotel/SingleHotel";
+import BookmarkLayout from "./components/BookmarkLayout/BookmarkLayout";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,20 @@ const router = createBrowserRouter([
           {
             path: ":id",
             Component: SingleHotel,
+          },
+        ],
+      },
+      {
+        path: "/bookmark",
+        Component: BookmarkLayout,
+        children: [
+          {
+            index: true,
+            element: <p>bookmark list</p>,
+          },
+          {
+            path: "add",
+            element: <p>add new bookmark</p>,
           },
         ],
       },
