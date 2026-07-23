@@ -4,24 +4,25 @@ import Layout from "./components/Layout/Layout";
 import LocationList from "./components/LocationList/LocationList";
 import AppLayout from "./components/AppLayout/AppLayout";
 import Hotels from "./components/Hotels/Hotels";
+import SingleHotel from "./components/SingleHotel/SingleHotel";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    Component: Layout,
     children: [
       {
         index: true,
-        element: <LocationList />,
+        Component: LocationList,
       },
       {
-        path: "hotels",
+        path: "/hotels",
         Component: AppLayout,
         children: [
           { index: true, Component: Hotels },
           {
             path: ":id",
-            element: <p>single hotel data</p>,
+            Component: SingleHotel,
           },
         ],
       },
