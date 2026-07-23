@@ -31,7 +31,17 @@ function HotelsProvider({ children }) {
   }
 
   return (
-    <HotelsContext value={{ hotels, isLoading, getCurrentHotel, currentHotel, isLoadingCurrentHotel }}>{children}</HotelsContext>
+    <HotelsContext
+      value={{
+        hotels,
+        isLoading,
+        getCurrentHotel,
+        currentHotel,
+        isLoadingCurrentHotel,
+      }}
+    >
+      {children}
+    </HotelsContext>
   );
 }
 

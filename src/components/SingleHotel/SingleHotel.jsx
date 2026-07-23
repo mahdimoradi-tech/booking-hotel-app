@@ -11,6 +11,7 @@ function SingleHotel() {
   }, [id]);
 
   if (isLoadingCurrentHotel || !currentHotel) return <p>Loading...</p>;
+  
   return (
     <div className="room">
       <div className="roomDetail">
