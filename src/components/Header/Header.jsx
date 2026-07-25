@@ -1,6 +1,12 @@
 import { useRef, useState } from "react";
 import { MdLocationOn } from "react-icons/md";
-import { HiCalendar, HiLogout, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
+import {
+  HiCalendar,
+  HiLogout,
+  HiMinus,
+  HiPlus,
+  HiSearch,
+} from "react-icons/hi";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -12,10 +18,13 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [destination, setDestination] = useState(searchParams.get("destination") || "");
+  const [destination, setDestination] = useState(
+    searchParams.get("destination") || "",
+  );
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 2,
@@ -108,7 +117,7 @@ function Header() {
           </button>
         </div>
       </div>
-      <User/>
+      <User />
     </div>
   );
 }
@@ -168,9 +177,25 @@ function OptionItem({ type, options, minLimit, handleOptions }) {
 }
 
 function User() {
+  const navigate = useNavigate();
+  const { user, isAuthenticated, logout } = useAuth();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <div>
+      {isAuthenticated ? (
+        <div>
+          <span>{user.name}</span>
+          <button>
+            <HiLogout className="icon" onClick={handleLogout} />
+          </button>
+        </div>
+      ) : (
         <NavLink to="/login">login</NavLink>
+      )}
     </div>
   );
 }

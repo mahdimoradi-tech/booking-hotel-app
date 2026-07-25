@@ -9,6 +9,7 @@ import BookmarkLayout from "./components/BookmarkLayout/BookmarkLayout";
 import Bookmarks from "./components/Bookmarks/Bookmarks";
 import SingleBookmark from "./components/SingleBookmark/SingleBookmark";
 import AddNewBookmark from "./components/AddNewBookmark/AddNewBookmark";
+import Login from "./components/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
             Component: AddNewBookmark,
           },
         ],
+      },
+      {
+        path: "/login",
+        Component: Login,
       },
     ],
   },
