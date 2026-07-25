@@ -1325,15 +1325,6 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Hoshoot",
-      "country": "Mongolia",
-      "countryCode": "MN",
-      "latitude": "48.922499263758255",
-      "longitude": "87.89358089899754",
-      "host_location": "Hoshoot Mongolia",
-      "id": 1
-    },
-    {
       "cityName": "Al Jawf",
       "country": "Libya",
       "countryCode": "LY",
@@ -1350,6 +1341,15 @@
       "longitude": "30.930536584092394",
       "host_location": "Borispolskiy Rayon Ukraine",
       "id": 3
+    },
+    {
+      "cityName": "Ivry-sur-Seine",
+      "country": "France",
+      "countryCode": "FR",
+      "latitude": "48.80957673328024",
+      "longitude": "2.3730468750000004",
+      "host_location": "Ivry-sur-Seine France",
+      "id": 4
     }
   ]
 }
