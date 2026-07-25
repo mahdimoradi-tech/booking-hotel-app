@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const BookmarkContext = createContext(null);
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://booking-hotel-app-api.onrender.com";
 
 const initialState = {
   currentBookmark: null,
