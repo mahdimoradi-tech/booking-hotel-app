@@ -10,6 +10,7 @@ import Bookmarks from "./components/Bookmarks/Bookmarks";
 import SingleBookmark from "./components/SingleBookmark/SingleBookmark";
 import AddNewBookmark from "./components/AddNewBookmark/AddNewBookmark";
 import Login from "./components/Login/Login";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/bookmark",
-        Component: BookmarkLayout,
+        element: (
+          <ProtectedRoute>
+            <BookmarkLayout />
+          </ProtectedRoute>
+        ),
         children: [
           {
             index: true,
