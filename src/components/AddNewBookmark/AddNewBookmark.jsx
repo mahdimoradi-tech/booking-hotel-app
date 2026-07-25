@@ -4,6 +4,7 @@ import useLatLngUrl from "../../hooks/useLatLngUrl";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useBookmark } from "../context/BookmarkProvider";
 
 const BASE_GEOCODING_URL =
   "https://api.bigdatacloud.net/data/reverse-geocode-client";
@@ -16,6 +17,7 @@ function AddNewBookmark() {
   const [countryCode, setCountryCode] = useState(null);
   const [isLoadingGeoCode, setIsLoadingGeoCode] = useState(false);
   const [geoCodeError, setGeoCodeError] = useState(null);
+  const { createNewBookmark } = useBookmark();
 
   useEffect(() => {
     if (!lat || !lng) return;
@@ -44,6 +46,23 @@ function AddNewBookmark() {
     getGeoCoding();
   }, [lat, lng]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!cityName || !country) return;
+
+    const newBookmark = {
+      cityName,
+      country,
+      countryCode,
+      latitude: lat,
+      longitude: lng,
+      host_location: cityName + " " + country,
+    };
+
+    await createNewBookmark(newBookmark);
+    navigate("/bookmark");
+  };
+
   if (isLoadingGeoCode) return <p>Loading...</p>;
   if (geoCodeError) return <p>{geoCodeError}</p>; //todo: create a component for this section
 
@@ -53,11 +72,23 @@ function AddNewBookmark() {
       <form action="" className="form">
         <div className="formControl">
           <label htmlFor="cityName">City Name</label>
-          <input value={cityName} type="text" name="cityName" id="cityName" />
+          <input
+            value={cityName}
+            onChange={(e) => setCityName(e.target.value)}
+            type="text"
+            name="cityName"
+            id="cityName"
+          />
         </div>
         <div className="formControl">
           <label htmlFor="country">Country</label>
-          <input value={country} type="text" name="country" id="country" />
+          <input
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            type="text"
+            name="country"
+            id="country"
+          />
           <ReactCountryFlag className="flag" svg countryCode={countryCode} />
           {/* <span className="flag">{countryCode}</span> //todo: create a function in js to show flag of country  */}
         </div>
@@ -71,7 +102,9 @@ function AddNewBookmark() {
           >
             &larr; Back
           </button>
-          <button className="btn btn--primary">Add</button>
+          <button className="btn btn--primary" onClick={(e) => handleSubmit(e)}>
+            Add
+          </button>
         </div>
       </form>
     </div>

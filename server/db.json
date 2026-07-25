@@ -1368,6 +1368,15 @@
       "longitude": "67.78003711374224",
       "host_location": "Baba Kot Pakistan",
       "id": 8
+    },
+    {
+      "cityName": "Comines-Warneton",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "latitude": "50.76894833369839",
+      "longitude": "2.9987240968485773",
+      "host_location": "Comines-Warneton Belgium",
+      "id": 9
     }
   ]
 }
