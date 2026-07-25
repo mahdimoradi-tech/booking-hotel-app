@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -8,31 +8,46 @@ const BASE_URL = "http://localhost:5000";
 
 export default function BookmarkProvider({ children }) {
   const [currentBookmark, setCurrentBookmark] = useState(null);
-  const [isLoadingCurrentBookmark, setIsLoadingCurrentBookmark] =
-    useState(false);
-  const { data: bookmarks, isLoading } = useFetch(`${BASE_URL}/bookmarks`);
+  const [isLoading, setIsLoading] = useState(false);
+  const [bookmarks, setBookmarks] = useState([]);
+
+  useEffect(() => {
+    async function getBookmarks() {
+      setIsLoading(true);
+      try {
+        const { data } = await axios.get(`${BASE_URL}/bookmarks`);
+        setBookmarks(data);
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    getBookmarks();
+  }, []);
 
   async function getCurrentBookmark(id) {
-    setIsLoadingCurrentBookmark(true);
+    setIsLoading(true);
     try {
       const { data } = await axios.get(`${BASE_URL}/bookmarks/${id}`);
       setCurrentBookmark(data);
     } catch (error) {
       toast.error(error.message);
     } finally {
-      setIsLoadingCurrentBookmark(false);
+      setIsLoading(false);
     }
   }
 
   async function createNewBookmark(newBookmark) {
-    setIsLoadingCurrentBookmark(true);
+    setIsLoading(true);
     try {
       const { data } = await axios.post(`${BASE_URL}/bookmarks`, newBookmark);
       setCurrentBookmark(data);
+      setBookmarks((prev) => [...prev, data]);
     } catch (error) {
       toast.error(error.message);
     } finally {
-      setIsLoadingCurrentBookmark(false);
+      setIsLoading(false);
     }
   }
 
@@ -42,7 +57,6 @@ export default function BookmarkProvider({ children }) {
         bookmarks,
         isLoading,
         currentBookmark,
-        isLoadingCurrentBookmark,
         getCurrentBookmark,
         createNewBookmark,
       }}

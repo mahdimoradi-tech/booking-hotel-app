@@ -1,9 +1,8 @@
 import ReactCountryFlag from "react-country-flag";
-import { useAsyncError, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useLatLngUrl from "../../hooks/useLatLngUrl";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
 import { useBookmark } from "../context/BookmarkProvider";
 
 const BASE_GEOCODING_URL =

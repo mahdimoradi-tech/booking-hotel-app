@@ -1352,31 +1352,31 @@
       "id": 5
     },
     {
-      "cityName": "A Dakhla Oasis",
-      "country": "Egypt",
-      "countryCode": "EG",
-      "latitude": "25.02090651422749",
-      "longitude": "29.09059588509316",
-      "host_location": "A Dakhla Oasis Egypt",
+      "cityName": "Makkah",
+      "country": "Saudi Arabia",
+      "countryCode": "SA",
+      "latitude": "21.354618222131514",
+      "longitude": "39.93925433856227",
+      "host_location": "Makkah Saudi Arabia",
+      "id": 6
+    },
+    {
+      "cityName": "Edmonton",
+      "country": "Canada",
+      "countryCode": "CA",
+      "latitude": "53.4357192066942",
+      "longitude": "-113.55463065578851",
+      "host_location": "Edmonton Canada",
       "id": 7
     },
     {
-      "cityName": "Baba Kot",
-      "country": "Pakistan",
-      "countryCode": "PK",
-      "latitude": "28.43528783183169",
-      "longitude": "67.78003711374224",
-      "host_location": "Baba Kot Pakistan",
+      "cityName": "Kamloops",
+      "country": "Canada",
+      "countryCode": "CA",
+      "latitude": "50.62507306341437",
+      "longitude": "-120.4559205772677",
+      "host_location": "Kamloops Canada",
       "id": 8
-    },
-    {
-      "cityName": "Comines-Warneton",
-      "country": "Belgium",
-      "countryCode": "BE",
-      "latitude": "50.76894833369839",
-      "longitude": "2.9987240968485773",
-      "host_location": "Comines-Warneton Belgium",
-      "id": 9
     }
   ]
 }
