@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { MdLocationOn } from "react-icons/md";
-import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
+import { HiCalendar, HiLogout, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -8,6 +8,7 @@ import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import {
   createSearchParams,
+  NavLink,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
@@ -55,6 +56,7 @@ function Header() {
 
   return (
     <div className="header">
+      <NavLink to="/bookmark">Bookmarks</NavLink>
       <div className="headerSearch">
         <div className="headerSearchItem">
           <MdLocationOn className="headerIcon locationIcon" />
@@ -106,6 +108,7 @@ function Header() {
           </button>
         </div>
       </div>
+      <User/>
     </div>
   );
 }
@@ -160,6 +163,14 @@ function OptionItem({ type, options, minLimit, handleOptions }) {
           <HiPlus className="icon" />
         </button>
       </div>
+    </div>
+  );
+}
+
+function User() {
+  return (
+    <div>
+        <NavLink to="/login">login</NavLink>
     </div>
   );
 }
