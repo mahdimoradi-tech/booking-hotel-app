@@ -1325,49 +1325,31 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Abalessa",
-      "country": "Algeria",
-      "countryCode": "DZ",
-      "latitude": "23.18455079512732",
-      "longitude": "3.795523257510883",
-      "host_location": "Abalessa Algeria",
+      "cityName": "Hoshoot",
+      "country": "Mongolia",
+      "countryCode": "MN",
+      "latitude": "48.922499263758255",
+      "longitude": "87.89358089899754",
+      "host_location": "Hoshoot Mongolia",
       "id": 1
     },
     {
-      "cityName": "Mahidasht",
-      "country": "Iran (Islamic Republic of)",
-      "countryCode": "IR",
-      "latitude": "34.32869425037187",
-      "longitude": "46.724183117022086",
-      "host_location": "Mahidasht Iran (Islamic Republic of)",
-      "id": 4
+      "cityName": "Al Jawf",
+      "country": "Libya",
+      "countryCode": "LY",
+      "latitude": "26.902476886279832",
+      "longitude": "21.26205623618895",
+      "host_location": "Al Jawf Libya",
+      "id": 2
     },
     {
-      "cityName": "Sanandaj",
-      "country": "Iran (Islamic Republic of)",
-      "countryCode": "IR",
-      "latitude": "35.31372444726279",
-      "longitude": "47.03114358752335",
-      "host_location": "Sanandaj Iran (Islamic Republic of)",
-      "id": 5
-    },
-    {
-      "cityName": "A Dakhla Oasis",
-      "country": "Egypt",
-      "countryCode": "EG",
-      "latitude": "25.02090651422749",
-      "longitude": "29.09059588509316",
-      "host_location": "A Dakhla Oasis Egypt",
-      "id": 7
-    },
-    {
-      "cityName": "Baba Kot",
-      "country": "Pakistan",
-      "countryCode": "PK",
-      "latitude": "28.43528783183169",
-      "longitude": "67.78003711374224",
-      "host_location": "Baba Kot Pakistan",
-      "id": 8
+      "cityName": "Borispolskiy Rayon",
+      "country": "Ukraine",
+      "countryCode": "UA",
+      "latitude": "50.401515322782366",
+      "longitude": "30.930536584092394",
+      "host_location": "Borispolskiy Rayon Ukraine",
+      "id": 3
     }
   ]
 }

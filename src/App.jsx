@@ -6,6 +6,9 @@ import AppLayout from "./components/AppLayout/AppLayout";
 import Hotels from "./components/Hotels/Hotels";
 import SingleHotel from "./components/SingleHotel/SingleHotel";
 import BookmarkLayout from "./components/BookmarkLayout/BookmarkLayout";
+import Bookmarks from "./components/Bookmarks/Bookmarks";
+import SingleBookmark from "./components/SingleBookmark/SingleBookmark";
+import AddNewBookmark from "./components/AddNewBookmark/AddNewBookmark";
 
 const router = createBrowserRouter([
   {
@@ -33,11 +36,15 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <p>bookmark list</p>,
+            Component: Bookmarks,
+          },
+          {
+            path: ":id",
+            Component: SingleBookmark,
           },
           {
             path: "add",
-            element: <p>add new bookmark</p>,
+            Component: AddNewBookmark,
           },
         ],
       },

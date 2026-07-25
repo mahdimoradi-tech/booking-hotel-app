@@ -1,13 +1,15 @@
+import { Outlet } from "react-router-dom";
 import Map from "../Map/Map";
+import { useBookmark } from "../context/BookmarkProvider";
 
 function BookmarkLayout() {
+  const { bookmarks } = useBookmark();
   return (
     <div className="appLayout">
       <div className="sidebar">
-        {/* <Outlet /> */}
-        bookmark list
+        <Outlet />
       </div>
-      <Map markerLocations={[]} />
+      <Map markerLocations={bookmarks} />
     </div>
   );
 }
