@@ -25,10 +25,11 @@
   --color-primary: #0d1f4e;
   --color-secondary: #152b6b;
   --color-accent: #f5c518;
-  --color-surface: #f7f8fc;
+  --color-surface: #ECEDF3;
   --color-border: #e8ecf5;
   --text-color-primary: #0d1f4e;
   --text-color-secondary: #152b6b;
+  --text-color-gray: #94a3b8;
   --color-danger: #ef4444;
   --color-white: #ffffff;
 
@@ -116,7 +117,7 @@ select {
   font-family: inherit;
 }
 
-button{
+button {
   background-color: transparent;
   cursor: pointer;
 }

@@ -4,6 +4,7 @@ import {
   HiCalendar,
   HiLogout,
   HiMinus,
+  HiOutlineLocationMarker,
   HiOutlineSearch,
   HiPlus,
   HiSearch,
@@ -20,7 +21,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
-import { HiOutlineBookmark } from "react-icons/hi2";
+import { HiChevronRight, HiOutlineBookmark } from "react-icons/hi2";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -78,7 +79,7 @@ function Header() {
           </button>
         </div>
 
-        <div className="hero-header__search">
+        <div className="hero-header__search glass-box">
           <div>
             <HiOutlineSearch className="icon icon--search" />
           </div>
@@ -98,6 +99,17 @@ function Header() {
           </button>
         </div>
       </header>
+
+      <section className="search-card">
+        <div className="search-card__destination">
+          <p className="search-card__title">DESTINATION</p>
+          <button type="button" className="search-card__destination-select">
+            <HiOutlineLocationMarker className="icon icon--destination"/>
+            <p className="search-card__destination-name">Paris, France</p>
+            <HiChevronRight className="icon icon--chevron"/>
+          </button>
+        </div>
+      </section>
 
       <div className="header">
         <NavLink to="/bookmark">Bookmarks</NavLink>
