@@ -32,6 +32,8 @@
   --text-color-gray: #94a3b8;
   --color-danger: #ef4444;
   --color-white: #ffffff;
+  --color-glass-mid-dark: rgba(255, 255, 255, 0.19);
+  --color-glass-light: rgba(255, 255, 255, 0.47);
 
   /* typography */
   --font-primary: "Plus Jakarta Sans", sans-serif;
@@ -62,6 +64,10 @@
   --radius-lg: 2.4rem;
   --radius-pill: 50rem;
   --radius-hero: 3.2rem;
+
+  /* border color */
+  --color-border-light: rgba(255, 255, 255, 0.24);
+  --color-border-mid-dark: rgba(182, 176, 176, 0.24);
 
   /* shadows */
   --shadow-sm: 0 4px 6px rgba(13, 31, 78, 0.05);

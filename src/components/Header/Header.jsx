@@ -21,7 +21,11 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
-import { HiChevronRight, HiOutlineBookmark } from "react-icons/hi2";
+import {
+  HiChevronRight,
+  HiOutlineBookmark,
+  HiOutlineCalendar,
+} from "react-icons/hi2";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -104,9 +108,70 @@ function Header() {
         <div className="search-card__destination">
           <p className="search-card__title">DESTINATION</p>
           <button type="button" className="search-card__destination-select">
-            <HiOutlineLocationMarker className="icon icon--destination"/>
+            <HiOutlineLocationMarker className="icon icon--destination" />
             <p className="search-card__destination-name">Paris, France</p>
-            <HiChevronRight className="icon icon--chevron"/>
+            <HiChevronRight className="icon icon--chevron" />
+          </button>
+        </div>
+
+        <div className="search-card__date">
+          <p className="search-card__title">DATES</p>
+          <div className="search-card__date-selection">
+            <button type="button" className="search-card__date-select">
+              <HiOutlineCalendar className="icon icon--calendar" />
+              <div className="search-card__date-desc">
+                <span className="search-card__date-category">Check-in</span>
+                <span className="search-card__date-selected">Aug 14</span>
+              </div>
+            </button>
+            <button type="button" className="search-card__date-select">
+              <HiOutlineCalendar className="icon icon--calendar" />
+              <div className="search-card__date-desc">
+                <span className="search-card__date-category">Check-out</span>
+                <span className="search-card__date-selected">Aug 14</span>
+              </div>
+            </button>
+            <ul className="search-card__single-date-pick">
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">S</span>
+                <span className="search-card__single-date-number">11</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">M</span>
+                <span className="search-card__single-date-number search-card__single-date-number--selected">
+                  12
+                </span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">T</span>
+                <span className="search-card__single-date-number">13</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">W</span>
+                <span className="search-card__single-date-number">14</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">T</span>
+                <span className="search-card__single-date-number">15</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">F</span>
+                <span className="search-card__single-date-number">16</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">S</span>
+                <span className="search-card__single-date-number">17</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="search-card__destination">
+          <p className="search-card__title">GUESTS & ROOMS</p>
+          <button type="button" className="search-card__destination-select">
+            <HiOutlineLocationMarker className="icon icon--destination" />
+            <p className="search-card__destination-name">Paris, France</p>
+            <HiChevronRight className="icon icon--chevron" />
           </button>
         </div>
       </section>

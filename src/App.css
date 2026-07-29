@@ -1,6 +1,6 @@
 /* Utility classes */
 .glass-box {
-  background: rgba(255, 255, 255, 0.19);
+  background: var(--color-glass-mid-dark);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10.8px);
   -webkit-backdrop-filter: blur(10.8px);
@@ -46,8 +46,8 @@
 }
 
 .btn-glass {
-  background: rgba(255, 255, 255, 0.19);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: var(--color-glass-mid-dark);
+  box-shadow: var(--shadow-sm);
   backdrop-filter: blur(10.8px);
   -webkit-backdrop-filter: blur(10.8px);
   border-radius: var(--radius-sm);
@@ -57,13 +57,8 @@
   justify-content: center;
 }
 
-.icon {
-  color: var(--color-white);
-  font-size: var(--text-md);
-}
-
 .icon--search {
-  color: rgba(255, 255, 255, 0.47);
+  color: var(--color-glass-light);
 }
 
 .hero-header__action {
@@ -80,6 +75,7 @@
   gap: var(--space-sm);
   border-radius: var(--radius-sm);
   padding: var(--space-xs);
+  border: 1px solid var(--color-border-light);
 }
 
 .hero-header__input {
@@ -90,7 +86,7 @@
   width: 100%;
 }
 .hero-header__input::placeholder {
-  color: rgba(255, 255, 255, 0.47);
+  color: var(--color-glass-light);
 }
 
 .hero-header__submit-btn {
@@ -110,10 +106,12 @@
   z-index: 10;
 }
 
-.search-card__destination {
+.search-card__destination,
+.search-card__date {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
 }
 
 .search-card__title {
@@ -122,13 +120,15 @@
   color: var(--text-color-gray);
 }
 
-.search-card__destination-select {
+.search-card__destination-select,
+.search-card__date-select {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   background: var(--color-surface);
   border-radius: var(--radius-sm);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border-mid-dark);
+  box-shadow: var(--shadow-sm);
   padding: var(--space-sm);
   cursor: pointer;
   width: 100%;
@@ -148,6 +148,72 @@
   flex: 1;
   text-align: left;
 }
+
+.search-card__date-selection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.icon--calendar {
+  color: var(--color-primary);
+  font-weight: bolder;
+}
+
+.search-card__date-desc {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-align: left;
+}
+
+.search-card__date-category {
+  color: var(--text-color-gray);
+  font-weight: bold;
+  font-size: var(--text-xs);
+}
+
+.search-card__date-selected {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.search-card__single-date-pick {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.search-card__single-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.search-card__single-date-day {
+  font-weight: bold;
+  color: var(--text-color-gray);
+  font-size: var(--text-xs);
+}
+
+.search-card__single-date-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  background-color: var(--color-surface);
+  width: 100%;
+  max-width: 3.6rem;
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+}
+
+.search-card__single-date-number.search-card__single-date-number--selected {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
 /* -------------------------------------------------- */
 .header {
   display: flex;
