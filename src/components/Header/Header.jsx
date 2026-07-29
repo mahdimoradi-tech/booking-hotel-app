@@ -4,6 +4,7 @@ import {
   HiCalendar,
   HiLogout,
   HiMinus,
+  HiOutlineSearch,
   HiPlus,
   HiSearch,
 } from "react-icons/hi";
@@ -19,6 +20,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
+import { HiOutlineBookmark } from "react-icons/hi2";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -64,61 +66,101 @@ function Header() {
   };
 
   return (
-    <div className="header">
-      <NavLink to="/bookmark">Bookmarks</NavLink>
-      <div className="headerSearch">
-        <div className="headerSearchItem">
-          <MdLocationOn className="headerIcon locationIcon" />
+    <>
+      <header className="hero-header">
+        <div className="hero-header__content">
+          <div className="hero-header__welcome">
+            <p className="hero-header__wish">Good morning.</p>
+            <h3 className="hero-header__title">Where to, Mahdi?✈️</h3>
+          </div>
+          <button className="hero-header__action btn-glass">
+            <HiOutlineBookmark className="icon" />
+          </button>
+        </div>
+
+        <div className="hero-header__search">
+          <div>
+            <HiOutlineSearch className="icon icon--search" />
+          </div>
+
           <input
             value={destination}
             type="text"
             onChange={(e) => setDestination(e.target.value)}
-            placeholder="where to go...?"
-            className="headerSearchInput"
+            placeholder="Search destinations..."
+            className="hero-header__input"
             name="destination"
             id="destination"
           />
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <HiCalendar className="headerIcon dateIcon" />
-          <div className="dateDropDown" onClick={() => setOpenDate(!openDate)}>
-            {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
-          </div>
-          {openDate && (
-            <DateRange
-              className="date"
-              ranges={date}
-              onChange={(item) => setDate([item.selection])}
-              minDate={new Date()}
-              moveRangeOnFirstSelection={true}
-            />
-          )}
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <div id="optionDropDown" onClick={() => setOpenOptions(!openOptions)}>
-            {options.adult} adult &bull; {options.children} children &bull;{" "}
-            {options.room} room
-          </div>
-          {openOptions && (
-            <GuestOptionList
-              options={options}
-              handleOptions={handleOptions}
-              setOpenOptions={setOpenOptions}
-            />
-          )}
 
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <button className="headerSearchBtn" onClick={handleSearch}>
-            <HiSearch className="headerIcon" />
+          <button className="hero-header__submit-btn" onClick={handleSearch}>
+            Hotels
           </button>
         </div>
+      </header>
+
+      <div className="header">
+        <NavLink to="/bookmark">Bookmarks</NavLink>
+        <div className="headerSearch">
+          <div className="headerSearchItem">
+            <MdLocationOn className="headerIcon locationIcon" />
+            <input
+              value={destination}
+              type="text"
+              onChange={(e) => setDestination(e.target.value)}
+              placeholder="where to go...?"
+              className="headerSearchInput"
+              name="destination"
+              id="destination"
+            />
+            <span className="seperator"></span>
+          </div>
+          <div className="headerSearchItem">
+            <HiCalendar className="headerIcon dateIcon" />
+            <div
+              className="dateDropDown"
+              onClick={() => setOpenDate(!openDate)}
+            >
+              {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
+            </div>
+            {openDate && (
+              <DateRange
+                className="date"
+                ranges={date}
+                onChange={(item) => setDate([item.selection])}
+                minDate={new Date()}
+                moveRangeOnFirstSelection={true}
+              />
+            )}
+            <span className="seperator"></span>
+          </div>
+          <div className="headerSearchItem">
+            <div
+              id="optionDropDown"
+              onClick={() => setOpenOptions(!openOptions)}
+            >
+              {options.adult} adult &bull; {options.children} children &bull;{" "}
+              {options.room} room
+            </div>
+            {openOptions && (
+              <GuestOptionList
+                options={options}
+                handleOptions={handleOptions}
+                setOpenOptions={setOpenOptions}
+              />
+            )}
+
+            <span className="seperator"></span>
+          </div>
+          <div className="headerSearchItem">
+            <button className="headerSearchBtn" onClick={handleSearch}>
+              <HiSearch className="headerIcon" />
+            </button>
+          </div>
+        </div>
+        <User />
       </div>
-      <User />
-    </div>
+    </>
   );
 }
 
