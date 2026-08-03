@@ -168,12 +168,67 @@ function Header() {
 
         <div className="search-card__destination">
           <p className="search-card__title">GUESTS & ROOMS</p>
-          <button type="button" className="search-card__destination-select">
-            <HiOutlineLocationMarker className="icon icon--destination" />
-            <p className="search-card__destination-name">Paris, France</p>
-            <HiChevronRight className="icon icon--chevron" />
-          </button>
+          <div className="search-card__options">
+            <div className="search-card__option">
+              <p className="search-card__option-title">Adutls</p>
+              <div className="search-card__option-count">
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--minus"
+                >
+                  <HiMinus />
+                </button>
+                <span className="search-card__option-number">2</span>
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--plus"
+                >
+                  <HiPlus />
+                </button>
+              </div>
+            </div>
+            <div className="search-card__option">
+              <p className="search-card__option-title">Children</p>
+              <div className="search-card__option-count">
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--minus"
+                >
+                  <HiMinus />
+                </button>
+                <span className="search-card__option-number">2</span>
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--plus"
+                >
+                  <HiPlus />
+                </button>
+              </div>
+            </div>
+            <div className="search-card__option">
+              <p className="search-card__option-title">Rooms</p>
+              <div className="search-card__option-count">
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--minus"
+                >
+                  <HiMinus />
+                </button>
+                <span className="search-card__option-number">2</span>
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--plus"
+                >
+                  <HiPlus />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <button className="search-card__btn">
+          Search Hotels
+        </button>
       </section>
 
       <div className="header">
