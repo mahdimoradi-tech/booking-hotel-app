@@ -78,9 +78,9 @@ function Header() {
             <p className="hero-header__wish">Good morning.</p>
             <h3 className="hero-header__title">Where to, Mahdi?✈️</h3>
           </div>
-          <button className="hero-header__action btn-glass">
+          <NavLink to="/bookmark" className="hero-header__action glass-box">
             <HiOutlineBookmark className="icon" />
-          </button>
+          </NavLink>
         </div>
 
         <div className="hero-header__search glass-box">
@@ -109,63 +109,67 @@ function Header() {
           <p className="search-card__title">DESTINATION</p>
           <button type="button" className="search-card__destination-select">
             <HiOutlineLocationMarker className="icon icon--destination" />
-            <p className="search-card__destination-name">Paris, France</p>
+            <span className="search-card__destination-name">
+              {destination ? destination : "Where to go?"}
+            </span>
             <HiChevronRight className="icon icon--chevron" />
           </button>
         </div>
-
         <div className="search-card__date">
           <p className="search-card__title">DATES</p>
           <div className="search-card__date-selection">
-            <button type="button" className="search-card__date-select">
+            {/* دکمه Check-in */}
+            <button
+              type="button"
+              className="search-card__date-select"
+              onClick={() => setOpenDate(!openDate)}
+            >
               <HiOutlineCalendar className="icon icon--calendar" />
               <div className="search-card__date-desc">
                 <span className="search-card__date-category">Check-in</span>
-                <span className="search-card__date-selected">Aug 14</span>
+                <span className="search-card__date-selected">
+                  {format(date[0].startDate, "MMM dd")}
+                </span>
               </div>
             </button>
-            <button type="button" className="search-card__date-select">
+
+            {/* دکمه Check-out */}
+            <button
+              type="button"
+              className="search-card__date-select"
+              onClick={() => setOpenDate(!openDate)}
+            >
               <HiOutlineCalendar className="icon icon--calendar" />
               <div className="search-card__date-desc">
                 <span className="search-card__date-category">Check-out</span>
-                <span className="search-card__date-selected">Aug 14</span>
+                <span className="search-card__date-selected">
+                  {format(date[0].endDate, "MMM dd")}
+                </span>
               </div>
             </button>
-            <ul className="search-card__single-date-pick">
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">S</span>
-                <span className="search-card__single-date-number">11</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">M</span>
-                <span className="search-card__single-date-number search-card__single-date-number--selected">
-                  12
-                </span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">T</span>
-                <span className="search-card__single-date-number">13</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">W</span>
-                <span className="search-card__single-date-number">14</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">T</span>
-                <span className="search-card__single-date-number">15</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">F</span>
-                <span className="search-card__single-date-number">16</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">S</span>
-                <span className="search-card__single-date-number">17</span>
-              </li>
-            </ul>
+
+            {/* رندر شرطی تقویم DateRange */}
+            {openDate && (
+              <div
+                style={{
+                  gridColumn: "1 / -1",
+                  position: "relative",
+                  zIndex: 100,
+                }}
+              >
+                <DateRange
+                  className="date"
+                  ranges={date}
+                  onChange={(item) => setDate([item.selection])}
+                  minDate={new Date()}
+                  moveRangeOnFirstSelection={true}
+                />
+              </div>
+            )}
+
+            {/* تقویم ۷ روزه استاتیک شما فعلا میتونه زیر این باشه یا کلا حذف بشه */}
           </div>
         </div>
-
         <div className="search-card__destination">
           <p className="search-card__title">GUESTS & ROOMS</p>
           <div className="search-card__options">
@@ -175,13 +179,20 @@ function Header() {
                 <button
                   type="button"
                   className="search-card__option-btn search-card__option-btn--minus"
+                  onClick={() => handleOptions("adult", "dec")}
+                  disabled={options.adult <= 1}
                 >
                   <HiMinus />
                 </button>
-                <span className="search-card__option-number">2</span>
+
+                <span className="search-card__option-number">
+                  {options.adult}
+                </span>
+
                 <button
                   type="button"
                   className="search-card__option-btn search-card__option-btn--plus"
+                  onClick={() => handleOptions("adult", "inc")}
                 >
                   <HiPlus />
                 </button>
@@ -193,13 +204,20 @@ function Header() {
                 <button
                   type="button"
                   className="search-card__option-btn search-card__option-btn--minus"
+                  onClick={() => handleOptions("children", "dec")}
+                  disabled={options.children <= 1}
                 >
                   <HiMinus />
                 </button>
-                <span className="search-card__option-number">2</span>
+
+                <span className="search-card__option-number">
+                  {options.children}
+                </span>
+
                 <button
                   type="button"
                   className="search-card__option-btn search-card__option-btn--plus"
+                  onClick={() => handleOptions("children", "inc")}
                 >
                   <HiPlus />
                 </button>
@@ -211,13 +229,20 @@ function Header() {
                 <button
                   type="button"
                   className="search-card__option-btn search-card__option-btn--minus"
+                  onClick={() => handleOptions("room", "dec")}
+                  disabled={options.room <= 1}
                 >
                   <HiMinus />
                 </button>
-                <span className="search-card__option-number">2</span>
+
+                <span className="search-card__option-number">
+                  {options.room}
+                </span>
+
                 <button
                   type="button"
                   className="search-card__option-btn search-card__option-btn--plus"
+                  onClick={() => handleOptions("room", "inc")}
                 >
                   <HiPlus />
                 </button>
@@ -225,10 +250,9 @@ function Header() {
             </div>
           </div>
         </div>
-
-        <button className="search-card__btn">
+        <button className="search-card__btn" onClick={handleSearch}>
           Search Hotels
-        </button>
+        </button>{" "}
       </section>
 
       <div className="header">
