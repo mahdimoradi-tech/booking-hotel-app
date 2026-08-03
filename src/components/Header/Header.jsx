@@ -4,6 +4,8 @@ import {
   HiCalendar,
   HiLogout,
   HiMinus,
+  HiOutlineLocationMarker,
+  HiOutlineSearch,
   HiPlus,
   HiSearch,
 } from "react-icons/hi";
@@ -19,6 +21,11 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
+import {
+  HiChevronRight,
+  HiOutlineBookmark,
+  HiOutlineCalendar,
+} from "react-icons/hi2";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -64,61 +71,228 @@ function Header() {
   };
 
   return (
-    <div className="header">
-      <NavLink to="/bookmark">Bookmarks</NavLink>
-      <div className="headerSearch">
-        <div className="headerSearchItem">
-          <MdLocationOn className="headerIcon locationIcon" />
+    <>
+      <header className="hero-header">
+        <div className="hero-header__content">
+          <div className="hero-header__welcome">
+            <p className="hero-header__wish">Good morning.</p>
+            <h3 className="hero-header__title">Where to, Mahdi?✈️</h3>
+          </div>
+          <button className="hero-header__action btn-glass">
+            <HiOutlineBookmark className="icon" />
+          </button>
+        </div>
+
+        <div className="hero-header__search glass-box">
+          <div>
+            <HiOutlineSearch className="icon icon--search" />
+          </div>
+
           <input
             value={destination}
             type="text"
             onChange={(e) => setDestination(e.target.value)}
-            placeholder="where to go...?"
-            className="headerSearchInput"
+            placeholder="Search destinations..."
+            className="hero-header__input"
             name="destination"
             id="destination"
           />
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <HiCalendar className="headerIcon dateIcon" />
-          <div className="dateDropDown" onClick={() => setOpenDate(!openDate)}>
-            {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
-          </div>
-          {openDate && (
-            <DateRange
-              className="date"
-              ranges={date}
-              onChange={(item) => setDate([item.selection])}
-              minDate={new Date()}
-              moveRangeOnFirstSelection={true}
-            />
-          )}
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <div id="optionDropDown" onClick={() => setOpenOptions(!openOptions)}>
-            {options.adult} adult &bull; {options.children} children &bull;{" "}
-            {options.room} room
-          </div>
-          {openOptions && (
-            <GuestOptionList
-              options={options}
-              handleOptions={handleOptions}
-              setOpenOptions={setOpenOptions}
-            />
-          )}
 
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <button className="headerSearchBtn" onClick={handleSearch}>
-            <HiSearch className="headerIcon" />
+          <button className="hero-header__submit-btn" onClick={handleSearch}>
+            Hotels
           </button>
         </div>
+      </header>
+
+      <section className="search-card">
+        <div className="search-card__destination">
+          <p className="search-card__title">DESTINATION</p>
+          <button type="button" className="search-card__destination-select">
+            <HiOutlineLocationMarker className="icon icon--destination" />
+            <p className="search-card__destination-name">Paris, France</p>
+            <HiChevronRight className="icon icon--chevron" />
+          </button>
+        </div>
+
+        <div className="search-card__date">
+          <p className="search-card__title">DATES</p>
+          <div className="search-card__date-selection">
+            <button type="button" className="search-card__date-select">
+              <HiOutlineCalendar className="icon icon--calendar" />
+              <div className="search-card__date-desc">
+                <span className="search-card__date-category">Check-in</span>
+                <span className="search-card__date-selected">Aug 14</span>
+              </div>
+            </button>
+            <button type="button" className="search-card__date-select">
+              <HiOutlineCalendar className="icon icon--calendar" />
+              <div className="search-card__date-desc">
+                <span className="search-card__date-category">Check-out</span>
+                <span className="search-card__date-selected">Aug 14</span>
+              </div>
+            </button>
+            <ul className="search-card__single-date-pick">
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">S</span>
+                <span className="search-card__single-date-number">11</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">M</span>
+                <span className="search-card__single-date-number search-card__single-date-number--selected">
+                  12
+                </span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">T</span>
+                <span className="search-card__single-date-number">13</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">W</span>
+                <span className="search-card__single-date-number">14</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">T</span>
+                <span className="search-card__single-date-number">15</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">F</span>
+                <span className="search-card__single-date-number">16</span>
+              </li>
+              <li className="search-card__single-date">
+                <span className="search-card__single-date-day">S</span>
+                <span className="search-card__single-date-number">17</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="search-card__destination">
+          <p className="search-card__title">GUESTS & ROOMS</p>
+          <div className="search-card__options">
+            <div className="search-card__option">
+              <p className="search-card__option-title">Adutls</p>
+              <div className="search-card__option-count">
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--minus"
+                >
+                  <HiMinus />
+                </button>
+                <span className="search-card__option-number">2</span>
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--plus"
+                >
+                  <HiPlus />
+                </button>
+              </div>
+            </div>
+            <div className="search-card__option">
+              <p className="search-card__option-title">Children</p>
+              <div className="search-card__option-count">
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--minus"
+                >
+                  <HiMinus />
+                </button>
+                <span className="search-card__option-number">2</span>
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--plus"
+                >
+                  <HiPlus />
+                </button>
+              </div>
+            </div>
+            <div className="search-card__option">
+              <p className="search-card__option-title">Rooms</p>
+              <div className="search-card__option-count">
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--minus"
+                >
+                  <HiMinus />
+                </button>
+                <span className="search-card__option-number">2</span>
+                <button
+                  type="button"
+                  className="search-card__option-btn search-card__option-btn--plus"
+                >
+                  <HiPlus />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button className="search-card__btn">
+          Search Hotels
+        </button>
+      </section>
+
+      <div className="header">
+        <NavLink to="/bookmark">Bookmarks</NavLink>
+        <div className="headerSearch">
+          <div className="headerSearchItem">
+            <MdLocationOn className="headerIcon locationIcon" />
+            <input
+              value={destination}
+              type="text"
+              onChange={(e) => setDestination(e.target.value)}
+              placeholder="where to go...?"
+              className="headerSearchInput"
+              name="destination"
+              id="destination"
+            />
+            <span className="seperator"></span>
+          </div>
+          <div className="headerSearchItem">
+            <HiCalendar className="headerIcon dateIcon" />
+            <div
+              className="dateDropDown"
+              onClick={() => setOpenDate(!openDate)}
+            >
+              {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
+            </div>
+            {openDate && (
+              <DateRange
+                className="date"
+                ranges={date}
+                onChange={(item) => setDate([item.selection])}
+                minDate={new Date()}
+                moveRangeOnFirstSelection={true}
+              />
+            )}
+            <span className="seperator"></span>
+          </div>
+          <div className="headerSearchItem">
+            <div
+              id="optionDropDown"
+              onClick={() => setOpenOptions(!openOptions)}
+            >
+              {options.adult} adult &bull; {options.children} children &bull;{" "}
+              {options.room} room
+            </div>
+            {openOptions && (
+              <GuestOptionList
+                options={options}
+                handleOptions={handleOptions}
+                setOpenOptions={setOpenOptions}
+              />
+            )}
+
+            <span className="seperator"></span>
+          </div>
+          <div className="headerSearchItem">
+            <button className="headerSearchBtn" onClick={handleSearch}>
+              <HiSearch className="headerIcon" />
+            </button>
+          </div>
+        </div>
+        <User />
       </div>
-      <User />
-    </div>
+    </>
   );
 }
 
