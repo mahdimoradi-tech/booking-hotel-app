@@ -1,13 +1,9 @@
 import { useRef, useState } from "react";
-import { MdLocationOn } from "react-icons/md";
 import {
-  HiCalendar,
-  HiLogout,
   HiMinus,
   HiOutlineLocationMarker,
   HiOutlineSearch,
   HiPlus,
-  HiSearch,
 } from "react-icons/hi";
 import { IoLogOutOutline } from "react-icons/io5";
 import useOutSideClick from "../../hooks/useOutSideClick";
@@ -18,6 +14,7 @@ import { format } from "date-fns";
 import {
   createSearchParams,
   NavLink,
+  useLocation,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
@@ -28,13 +25,13 @@ import {
   HiOutlineCalendar,
   HiOutlineUser,
 } from "react-icons/hi2";
+import { useHotels } from "../context/HotelsProvider";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [destination, setDestination] = useState(
     searchParams.get("destination") || "",
   );
-  const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 2,
     children: 1,
@@ -51,6 +48,9 @@ function Header() {
   const navigate = useNavigate();
   const dateRef = useRef(null);
   const { isAuthenticated } = useAuth();
+  const location = useLocation();
+  const isHotelsPage = location.pathname.includes("/hotels");
+  const { hotelsNumber } = useHotels();
 
   useOutSideClick(dateRef, () => setOpenDate(false));
 
@@ -78,14 +78,31 @@ function Header() {
 
   return (
     <>
-      <header className="hero-header">
+      <header
+        className={`hero-header ${isHotelsPage ? "hero-header--hidden-card-mobile" : ""}`}
+      >
         <div className="hero-header__content">
           <div className="hero-header__welcome">
             <p className="hero-header__wish">
-              {isAuthenticated ? "Welcome back." : "Plan your trip."}
+              {isHotelsPage
+                ? `${options.adult} adults & ${options.children} children & ${options.room} room`
+                : isAuthenticated
+                  ? "Welcome back."
+                  : "Plan your trip."}
             </p>
             <h3 className="hero-header__title">
-              {isAuthenticated ? "Where to next? ✈️" : "Ready to explore? 🌍"}
+              {isHotelsPage ? (
+                <span className="hero-header__hotels-header">
+                  Hotels{" "}
+                  <span className="hero-header__hotels-number">
+                    {hotelsNumber}
+                  </span>
+                </span>
+              ) : isAuthenticated ? (
+                "Where to next? ✈️"
+              ) : (
+                "Ready to explore? 🌍"
+              )}
             </h3>
           </div>
 
@@ -113,7 +130,9 @@ function Header() {
         </div>
       </header>
 
-      <section className="search-card">
+      <section
+        className={`search-card ${isHotelsPage ? "search-card--hidden-mobile" : ""}`}
+      >
         <div className="search-card__destination">
           <p className="search-card__title">DESTINATION</p>
           <button type="button" className="search-card__destination-select">

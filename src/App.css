@@ -16,12 +16,25 @@
 /* Header Component */
 .hero-header {
   background-color: var(--color-primary);
-  padding: var(--space-md) var(--space-md) var(--space-4xl);
+  padding: var(--space-md) var(--space-md) var(--space-2xl);
   border-bottom-left-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+}
+
+.hero-header--hidden-card-mobile{
+  padding: var(--space-md) var(--space-md) var(--space-lg);
+}
+
+.hero-header__hotels-number{
+  color: var(--color-accent);
+}
+
+.hero-header__hotels-header{
+  font-weight: bold;
+  font-size: var(--text-xl);
 }
 
 .hero-header__content {
@@ -37,8 +50,8 @@
 }
 
 .hero-header__wish {
-  color: var(--color-surface);
-  font-size: var(--text-2xs);
+  color: var(--text-color-gray);
+  font-size: var(--text-xs);
 }
 
 .hero-header__title {
@@ -101,6 +114,10 @@
   margin: -3rem 1.2rem 1rem;
   position: relative;
   z-index: 10;
+}
+
+.search-card--hidden-mobile {
+  display: none;
 }
 
 .search-card__destination,

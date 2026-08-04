@@ -38,6 +38,7 @@ function HotelsProvider({ children }) {
         getCurrentHotel,
         currentHotel,
         isLoadingCurrentHotel,
+        hotelsNumber: hotels.length
       }}
     >
       {children}
