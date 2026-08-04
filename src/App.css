@@ -424,6 +424,9 @@
   font-size: var(--text-lg);
 }
 
+/* AppLayout Component */
+
+
 /*!! OLD UI CSS LOGIC */
 .header {
   display: flex;
