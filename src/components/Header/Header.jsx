@@ -175,68 +175,6 @@ function Header() {
           Search Hotels
         </button>
       </section>
-
-      {/* <div className="header">
-        <NavLink to="/bookmark">Bookmarks</NavLink>
-        <div className="headerSearch">
-          <div className="headerSearchItem">
-            <MdLocationOn className="headerIcon locationIcon" />
-            <input
-              value={destination}
-              type="text"
-              onChange={(e) => setDestination(e.target.value)}
-              placeholder="where to go...?"
-              className="headerSearchInput"
-              name="destination"
-              id="destination"
-            />
-            <span className="seperator"></span>
-          </div>
-          <div className="headerSearchItem">
-            <HiCalendar className="headerIcon dateIcon" />
-            <div
-              className="dateDropDown"
-              onClick={() => setOpenDate(!openDate)}
-            >
-              {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
-            </div>
-            {openDate && (
-              <DateRange
-                className="date"
-                ranges={date}
-                onChange={(item) => setDate([item.selection])}
-                minDate={new Date()}
-                moveRangeOnFirstSelection={true}
-              />
-            )}
-            <span className="seperator"></span>
-          </div>
-          <div className="headerSearchItem">
-            <div
-              id="optionDropDown"
-              onClick={() => setOpenOptions(!openOptions)}
-            >
-              {options.adult} adult &bull; {options.children} children &bull;{" "}
-              {options.room} room
-            </div>
-            {openOptions && (
-              <GuestOptionList
-                options={options}
-                handleOptions={handleOptions}
-                setOpenOptions={setOpenOptions}
-              />
-            )}
-
-            <span className="seperator"></span>
-          </div>
-          <div className="headerSearchItem">
-            <button className="headerSearchBtn" onClick={handleSearch}>
-              <HiSearch className="headerIcon" />
-            </button>
-          </div>
-        </div>
-        <User />
-      </div> */}
     </>
   );
 }
