@@ -22,12 +22,10 @@ function LocationList() {
                   src={item.medium_url}
                   alt={item.name}
                 />
-                <span className="hotel-card__badge badge">
-                  {item.room_type}
-                </span>
+                <span className="hotel-card__badge">{item.room_type}</span>
 
-                <button type="button" className="hotel-card__bookmark-action">
-                  <HiOutlineHeart />
+                <button type="button" className="hotel-card__like-action">
+                  <HiOutlineHeart className="icon icon--heart" />
                 </button>
                 <div className="hotel-card__stars">⭐⭐⭐</div>
               </div>
@@ -47,12 +45,6 @@ function LocationList() {
                     </span>
                   </div>
 
-                  <div className="hotel-card__amenities">
-                    {item.amenities.slice(0, 2).join(" • ")}
-                  </div>
-                </div>
-
-                <div className="hotel-card__review">
                   <div className="hotel-card__rating">
                     <span className="hotel-card__rate">
                       {(item.review_scores_rating / 10).toFixed(1)}
@@ -60,6 +52,12 @@ function LocationList() {
                     <p className="hotel-card__rate-numbers">
                       {`${item.number_of_reviews} reviews`}
                     </p>
+                  </div>
+                </div>
+
+                <div className="hotel-card__review">
+                  <div className="hotel-card__amenities">
+                    {item.amenities.slice(0, 2).join(" • ")}
                   </div>
 
                   <div className="hotel-card__price">
