@@ -164,84 +164,9 @@ function Header() {
 
         <div className="search-card__destination-options">
           <p className="search-card__title">GUESTS & ROOMS</p>
-          <div className="search-card__options">
-            <div className="search-card__option">
-              <p className="search-card__option-title">Adults</p>
-              <div className="search-card__option-count">
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--minus"
-                  onClick={() => handleOptions("adult", "dec")}
-                  disabled={options.adult <= 1}
-                >
-                  <HiMinus />
-                </button>
-
-                <span className="search-card__option-number">
-                  {options.adult}
-                </span>
-
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--plus"
-                  onClick={() => handleOptions("adult", "inc")}
-                >
-                  <HiPlus />
-                </button>
-              </div>
-            </div>
-            <div className="search-card__option">
-              <p className="search-card__option-title">Children</p>
-              <div className="search-card__option-count">
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--minus"
-                  onClick={() => handleOptions("children", "dec")}
-                  disabled={options.children <= 1}
-                >
-                  <HiMinus />
-                </button>
-
-                <span className="search-card__option-number">
-                  {options.children}
-                </span>
-
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--plus"
-                  onClick={() => handleOptions("children", "inc")}
-                >
-                  <HiPlus />
-                </button>
-              </div>
-            </div>
-            <div className="search-card__option">
-              <p className="search-card__option-title">Rooms</p>
-              <div className="search-card__option-count">
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--minus"
-                  onClick={() => handleOptions("room", "dec")}
-                  disabled={options.room <= 1}
-                >
-                  <HiMinus />
-                </button>
-
-                <span className="search-card__option-number">
-                  {options.room}
-                </span>
-
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--plus"
-                  onClick={() => handleOptions("room", "inc")}
-                >
-                  <HiPlus />
-                </button>
-              </div>
-            </div>
-          </div>
+          <GuestOptionList options={options} handleOptions={handleOptions}/>
         </div>
+
         <button className="search-card__btn" onClick={handleSearch}>
           Search Hotels
         </button>
@@ -315,51 +240,51 @@ function Header() {
 export default Header;
 
 function GuestOptionList({ options, handleOptions, setOpenOptions }) {
-  const optionRef = useRef(null);
-  useOutSideClick(optionRef, () => setOpenOptions(false));
+  // const optionRef = useRef(null);
+  // useOutSideClick(optionRef, () => setOpenOptions(false));
+
+  const guestCategories = [
+    { id: "adult", label: "Adults", minLimit: 1 },
+    { id: "children", label: "Children", minLimit: 0 },
+    { id: "room", label: "Rooms", minLimit: 1 },
+  ];
 
   return (
-    <div className="guestOptions" ref={optionRef}>
-      <OptionItem
-        type="adult"
-        options={options}
-        minLimit={1}
-        handleOptions={handleOptions}
-      />
-      <OptionItem
-        type="children"
-        options={options}
-        minLimit={0}
-        handleOptions={handleOptions}
-      />
-      <OptionItem
-        type="room"
-        options={options}
-        minLimit={1}
-        handleOptions={handleOptions}
-      />
+    <div className="search-card__options">
+      {guestCategories.map((item) => (
+        <OptionItem
+          key={item.id}
+          type={item.id}
+          label={item.label}
+          options={options}
+          minLimit={item.minLimit}
+          handleOptions={handleOptions}
+        />
+      ))}
     </div>
   );
 }
 
-function OptionItem({ type, options, minLimit, handleOptions }) {
+function OptionItem({ type, label, options, minLimit, handleOptions }) {
   return (
-    <div className="guestOptionItem">
-      <span className="optionText">{type}</span>
-      <div className="optionCounter">
+    <div className="search-card__option">
+      <p className="search-card__option-title">{label}</p>
+      <div className="search-card__option-count">
         <button
-          className="optionCounterBtn"
+          type="button"
+          className="search-card__option-btn search-card__option-btn--minus"
           onClick={() => handleOptions(type, "dec")}
           disabled={options[type] <= minLimit}
         >
-          <HiMinus className="icon" />
+          <HiMinus />
         </button>
-        <span className="optionCounterNumber">{options[type]}</span>
+        <span className="search-card__option-number">{options[type]}</span>
         <button
-          className="optionCounterBtn"
+          type="button"
+          className="search-card__option-btn search-card__option-btn--plus"
           onClick={() => handleOptions(type, "inc")}
         >
-          <HiPlus className="icon" />
+          <HiPlus />
         </button>
       </div>
     </div>

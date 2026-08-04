@@ -45,18 +45,6 @@
   font-size: var(--text-lg);
 }
 
-.btn-glass {
-  background: var(--color-glass-mid-dark);
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10.8px);
-  -webkit-backdrop-filter: blur(10.8px);
-  border-radius: var(--radius-sm);
-  padding: var(--space-xs);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .icon--search {
   color: var(--color-glass-light);
 }
@@ -262,7 +250,7 @@
 }
 
 
-/* -------------------------------------------------- */
+/*!! OLD UI CSS LOGIC */
 .header {
   display: flex;
   justify-content: center;
