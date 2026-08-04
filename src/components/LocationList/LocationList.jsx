@@ -10,9 +10,9 @@ function LocationList() {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className="nearbyLocation">
-      <h2>Nearby Locations</h2>
-      <div className="locationList">
+    <section className="location-list">
+      <h2 className="location-list__title">Nearby Locations</h2>
+      <div className="location-list__grid">
         {data.map((item) => {
           return (
             <article className="hotel-card" key={item.id}>
@@ -68,23 +68,9 @@ function LocationList() {
               </div>
             </article>
           );
-
-          // return (
-          //   <div className="locationItem" key={item.id}>
-          //     <img src={item.medium_url} alt={item.title} />
-          //     <div className="locationItemDesc">
-          //       <p className="location">{item.smart_location}</p>
-          //       <p className="name">{item.name}</p>
-          //       <p className="location">
-          //         €&nbsp;{item.price}&nbsp;
-          //         <span>night</span>
-          //       </p>
-          //     </div>
-          //   </div>
-          // );
         })}
       </div>
-    </div>
+    </section>
   );
 }
 

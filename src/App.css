@@ -258,6 +258,25 @@
 }
 
 /* LocationList Component */
+.location-list {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1200px; 
+  margin: 0 auto;
+}
+
+.location-list__title {
+  font-size: var(--text-xl);
+  color: var(--color-primary);
+  font-weight: bold;
+  margin-bottom: var(--space-lg);
+}
+
+.location-list__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
 .hotel-card {
   display: flex;
   flex-direction: column;
