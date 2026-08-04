@@ -11,7 +11,9 @@
   font-size: var(--text-md);
 }
 
-/* main css classes */
+/** main css classes */
+
+/* Header Component */
 .hero-header {
   background-color: var(--color-primary);
   padding: var(--space-md) var(--space-md) var(--space-4xl);
@@ -254,6 +256,8 @@
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
 }
+
+/* LocationList Component */
 
 
 /*!! OLD UI CSS LOGIC */
