@@ -9,6 +9,7 @@ import {
   HiPlus,
   HiSearch,
 } from "react-icons/hi";
+import { IoLogOutOutline } from "react-icons/io5";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -25,6 +26,7 @@ import {
   HiChevronRight,
   HiOutlineBookmark,
   HiOutlineCalendar,
+  HiOutlineUser,
 } from "react-icons/hi2";
 
 function Header() {
@@ -46,12 +48,11 @@ function Header() {
     },
   ]);
   const [openDate, setOpenDate] = useState(false);
-
+  const navigate = useNavigate();
   const dateRef = useRef(null);
+  const { isAuthenticated } = useAuth();
 
   useOutSideClick(dateRef, () => setOpenDate(false));
-
-  const navigate = useNavigate();
 
   const handleOptions = (name, operation) => {
     setOptions((prev) => {
@@ -80,12 +81,15 @@ function Header() {
       <header className="hero-header">
         <div className="hero-header__content">
           <div className="hero-header__welcome">
-            <p className="hero-header__wish">Good morning.</p>
-            <h3 className="hero-header__title">Where to, Mahdi?✈️</h3>
+            <p className="hero-header__wish">
+              {isAuthenticated ? "Welcome back." : "Plan your trip."}
+            </p>
+            <h3 className="hero-header__title">
+              {isAuthenticated ? "Where to next? ✈️" : "Ready to explore? 🌍"}
+            </h3>
           </div>
-          <NavLink to="/bookmark" className="hero-header__action glass-box">
-            <HiOutlineBookmark className="icon" />
-          </NavLink>
+
+          <User />
         </div>
 
         <div className="hero-header__search glass-box">
@@ -164,7 +168,7 @@ function Header() {
 
         <div className="search-card__destination-options">
           <p className="search-card__title">GUESTS & ROOMS</p>
-          <GuestOptionList options={options} handleOptions={handleOptions}/>
+          <GuestOptionList options={options} handleOptions={handleOptions} />
         </div>
 
         <button className="search-card__btn" onClick={handleSearch}>
@@ -172,7 +176,7 @@ function Header() {
         </button>
       </section>
 
-      <div className="header">
+      {/* <div className="header">
         <NavLink to="/bookmark">Bookmarks</NavLink>
         <div className="headerSearch">
           <div className="headerSearchItem">
@@ -232,7 +236,7 @@ function Header() {
           </div>
         </div>
         <User />
-      </div>
+      </div> */}
     </>
   );
 }
@@ -294,22 +298,35 @@ function OptionItem({ type, label, options, minLimit, handleOptions }) {
 function User() {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
+
   const handleLogout = () => {
     logout();
     navigate("/");
   };
 
   return (
-    <div>
+    <div className="hero-header__actions">
+      {isAuthenticated && (
+        <NavLink to="/bookmark" className="hero-header__action glass-box">
+          <HiOutlineBookmark className="icon" />
+        </NavLink>
+      )}
       {isAuthenticated ? (
-        <div>
-          <span>{user.name}</span>
-          <button>
-            <HiLogout className="icon" onClick={handleLogout} />
-          </button>
-        </div>
+        <button
+          onClick={handleLogout}
+          className="hero-header__action glass-box"
+          title="Logout"
+        >
+          <IoLogOutOutline className="icon" />
+        </button>
       ) : (
-        <NavLink to="/login">login</NavLink>
+        <NavLink
+          to="/login"
+          className="hero-header__action glass-box"
+          title="Login"
+        >
+          <HiOutlineUser className="icon" />
+        </NavLink>
       )}
     </div>
   );

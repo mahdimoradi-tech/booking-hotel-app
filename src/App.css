@@ -49,6 +49,12 @@
   color: var(--color-glass-light);
 }
 
+.hero-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
 .hero-header__action {
   border-radius: var(--radius-sm);
   padding: var(--space-xs);
