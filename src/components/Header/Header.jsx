@@ -46,6 +46,11 @@ function Header() {
     },
   ]);
   const [openDate, setOpenDate] = useState(false);
+
+  const dateRef = useRef(null);
+
+  useOutSideClick(dateRef, () => setOpenDate(false));
+
   const navigate = useNavigate();
 
   const handleOptions = (name, operation) => {
@@ -115,10 +120,14 @@ function Header() {
             <HiChevronRight className="icon icon--chevron" />
           </button>
         </div>
-        <div className="search-card__date">
+
+        <div className="search-card__date" ref={dateRef}>
           <p className="search-card__title">DATES</p>
-          <div className="search-card__date-selection">
-            {/* دکمه Check-in */}
+
+          <div
+            className="search-card__date-selection"
+            style={{ position: "relative" }}
+          >
             <button
               type="button"
               className="search-card__date-select"
@@ -126,55 +135,38 @@ function Header() {
             >
               <HiOutlineCalendar className="icon icon--calendar" />
               <div className="search-card__date-desc">
-                <span className="search-card__date-category">Check-in</span>
                 <span className="search-card__date-selected">
+                  <span className="search-card__date-category">Check-in</span>
                   {format(date[0].startDate, "MMM dd")}
                 </span>
-              </div>
-            </button>
-
-            {/* دکمه Check-out */}
-            <button
-              type="button"
-              className="search-card__date-select"
-              onClick={() => setOpenDate(!openDate)}
-            >
-              <HiOutlineCalendar className="icon icon--calendar" />
-              <div className="search-card__date-desc">
-                <span className="search-card__date-category">Check-out</span>
+                <span className="search-card__date-separator"> - </span>
                 <span className="search-card__date-selected">
+                  <span className="search-card__date-category">Check-out</span>
                   {format(date[0].endDate, "MMM dd")}
                 </span>
               </div>
             </button>
-
-            {/* رندر شرطی تقویم DateRange */}
             {openDate && (
-              <div
-                style={{
-                  gridColumn: "1 / -1",
-                  position: "relative",
-                  zIndex: 100,
-                }}
-              >
+              <div className="search-card__calendar-wrapper">
                 <DateRange
-                  className="date"
                   ranges={date}
                   onChange={(item) => setDate([item.selection])}
                   minDate={new Date()}
                   moveRangeOnFirstSelection={true}
+                  months={1}
+                  direction="horizontal"
+                  className="custom-date-range"
                 />
               </div>
             )}
-
-            {/* تقویم ۷ روزه استاتیک شما فعلا میتونه زیر این باشه یا کلا حذف بشه */}
           </div>
         </div>
-        <div className="search-card__destination">
+
+        <div className="search-card__destination-options">
           <p className="search-card__title">GUESTS & ROOMS</p>
           <div className="search-card__options">
             <div className="search-card__option">
-              <p className="search-card__option-title">Adutls</p>
+              <p className="search-card__option-title">Adults</p>
               <div className="search-card__option-count">
                 <button
                   type="button"
@@ -252,7 +244,7 @@ function Header() {
         </div>
         <button className="search-card__btn" onClick={handleSearch}>
           Search Hotels
-        </button>{" "}
+        </button>
       </section>
 
       <div className="header">
