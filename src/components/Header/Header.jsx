@@ -9,6 +9,7 @@ import {
   HiPlus,
   HiSearch,
 } from "react-icons/hi";
+import { IoLogOutOutline } from "react-icons/io5";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -25,6 +26,7 @@ import {
   HiChevronRight,
   HiOutlineBookmark,
   HiOutlineCalendar,
+  HiOutlineUser,
 } from "react-icons/hi2";
 
 function Header() {
@@ -47,6 +49,10 @@ function Header() {
   ]);
   const [openDate, setOpenDate] = useState(false);
   const navigate = useNavigate();
+  const dateRef = useRef(null);
+  const { isAuthenticated } = useAuth();
+
+  useOutSideClick(dateRef, () => setOpenDate(false));
 
   const handleOptions = (name, operation) => {
     setOptions((prev) => {
@@ -75,12 +81,15 @@ function Header() {
       <header className="hero-header">
         <div className="hero-header__content">
           <div className="hero-header__welcome">
-            <p className="hero-header__wish">Good morning.</p>
-            <h3 className="hero-header__title">Where to, Mahdi?✈️</h3>
+            <p className="hero-header__wish">
+              {isAuthenticated ? "Welcome back." : "Plan your trip."}
+            </p>
+            <h3 className="hero-header__title">
+              {isAuthenticated ? "Where to next? ✈️" : "Ready to explore? 🌍"}
+            </h3>
           </div>
-          <button className="hero-header__action btn-glass">
-            <HiOutlineBookmark className="icon" />
-          </button>
+
+          <User />
         </div>
 
         <div className="hero-header__search glass-box">
@@ -109,189 +118,63 @@ function Header() {
           <p className="search-card__title">DESTINATION</p>
           <button type="button" className="search-card__destination-select">
             <HiOutlineLocationMarker className="icon icon--destination" />
-            <p className="search-card__destination-name">Paris, France</p>
+            <span className="search-card__destination-name">
+              {destination ? destination : "Where to go?"}
+            </span>
             <HiChevronRight className="icon icon--chevron" />
           </button>
         </div>
 
-        <div className="search-card__date">
+        <div className="search-card__date" ref={dateRef}>
           <p className="search-card__title">DATES</p>
-          <div className="search-card__date-selection">
-            <button type="button" className="search-card__date-select">
+
+          <div
+            className="search-card__date-selection"
+            style={{ position: "relative" }}
+          >
+            <button
+              type="button"
+              className="search-card__date-select"
+              onClick={() => setOpenDate(!openDate)}
+            >
               <HiOutlineCalendar className="icon icon--calendar" />
               <div className="search-card__date-desc">
-                <span className="search-card__date-category">Check-in</span>
-                <span className="search-card__date-selected">Aug 14</span>
-              </div>
-            </button>
-            <button type="button" className="search-card__date-select">
-              <HiOutlineCalendar className="icon icon--calendar" />
-              <div className="search-card__date-desc">
-                <span className="search-card__date-category">Check-out</span>
-                <span className="search-card__date-selected">Aug 14</span>
-              </div>
-            </button>
-            <ul className="search-card__single-date-pick">
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">S</span>
-                <span className="search-card__single-date-number">11</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">M</span>
-                <span className="search-card__single-date-number search-card__single-date-number--selected">
-                  12
+                <span className="search-card__date-selected">
+                  <span className="search-card__date-category">Check-in</span>
+                  {format(date[0].startDate, "MMM dd")}
                 </span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">T</span>
-                <span className="search-card__single-date-number">13</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">W</span>
-                <span className="search-card__single-date-number">14</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">T</span>
-                <span className="search-card__single-date-number">15</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">F</span>
-                <span className="search-card__single-date-number">16</span>
-              </li>
-              <li className="search-card__single-date">
-                <span className="search-card__single-date-day">S</span>
-                <span className="search-card__single-date-number">17</span>
-              </li>
-            </ul>
+                <span className="search-card__date-separator"> - </span>
+                <span className="search-card__date-selected">
+                  <span className="search-card__date-category">Check-out</span>
+                  {format(date[0].endDate, "MMM dd")}
+                </span>
+              </div>
+            </button>
+            {openDate && (
+              <div className="search-card__calendar-wrapper">
+                <DateRange
+                  ranges={date}
+                  onChange={(item) => setDate([item.selection])}
+                  minDate={new Date()}
+                  moveRangeOnFirstSelection={true}
+                  months={1}
+                  direction="horizontal"
+                  className="custom-date-range"
+                />
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="search-card__destination">
+        <div className="search-card__destination-options">
           <p className="search-card__title">GUESTS & ROOMS</p>
-          <div className="search-card__options">
-            <div className="search-card__option">
-              <p className="search-card__option-title">Adutls</p>
-              <div className="search-card__option-count">
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--minus"
-                >
-                  <HiMinus />
-                </button>
-                <span className="search-card__option-number">2</span>
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--plus"
-                >
-                  <HiPlus />
-                </button>
-              </div>
-            </div>
-            <div className="search-card__option">
-              <p className="search-card__option-title">Children</p>
-              <div className="search-card__option-count">
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--minus"
-                >
-                  <HiMinus />
-                </button>
-                <span className="search-card__option-number">2</span>
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--plus"
-                >
-                  <HiPlus />
-                </button>
-              </div>
-            </div>
-            <div className="search-card__option">
-              <p className="search-card__option-title">Rooms</p>
-              <div className="search-card__option-count">
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--minus"
-                >
-                  <HiMinus />
-                </button>
-                <span className="search-card__option-number">2</span>
-                <button
-                  type="button"
-                  className="search-card__option-btn search-card__option-btn--plus"
-                >
-                  <HiPlus />
-                </button>
-              </div>
-            </div>
-          </div>
+          <GuestOptionList options={options} handleOptions={handleOptions} />
         </div>
 
-        <button className="search-card__btn">
+        <button className="search-card__btn" onClick={handleSearch}>
           Search Hotels
         </button>
       </section>
-
-      <div className="header">
-        <NavLink to="/bookmark">Bookmarks</NavLink>
-        <div className="headerSearch">
-          <div className="headerSearchItem">
-            <MdLocationOn className="headerIcon locationIcon" />
-            <input
-              value={destination}
-              type="text"
-              onChange={(e) => setDestination(e.target.value)}
-              placeholder="where to go...?"
-              className="headerSearchInput"
-              name="destination"
-              id="destination"
-            />
-            <span className="seperator"></span>
-          </div>
-          <div className="headerSearchItem">
-            <HiCalendar className="headerIcon dateIcon" />
-            <div
-              className="dateDropDown"
-              onClick={() => setOpenDate(!openDate)}
-            >
-              {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
-            </div>
-            {openDate && (
-              <DateRange
-                className="date"
-                ranges={date}
-                onChange={(item) => setDate([item.selection])}
-                minDate={new Date()}
-                moveRangeOnFirstSelection={true}
-              />
-            )}
-            <span className="seperator"></span>
-          </div>
-          <div className="headerSearchItem">
-            <div
-              id="optionDropDown"
-              onClick={() => setOpenOptions(!openOptions)}
-            >
-              {options.adult} adult &bull; {options.children} children &bull;{" "}
-              {options.room} room
-            </div>
-            {openOptions && (
-              <GuestOptionList
-                options={options}
-                handleOptions={handleOptions}
-                setOpenOptions={setOpenOptions}
-              />
-            )}
-
-            <span className="seperator"></span>
-          </div>
-          <div className="headerSearchItem">
-            <button className="headerSearchBtn" onClick={handleSearch}>
-              <HiSearch className="headerIcon" />
-            </button>
-          </div>
-        </div>
-        <User />
-      </div>
     </>
   );
 }
@@ -299,51 +182,51 @@ function Header() {
 export default Header;
 
 function GuestOptionList({ options, handleOptions, setOpenOptions }) {
-  const optionRef = useRef(null);
-  useOutSideClick(optionRef, () => setOpenOptions(false));
+  // const optionRef = useRef(null);
+  // useOutSideClick(optionRef, () => setOpenOptions(false));
+
+  const guestCategories = [
+    { id: "adult", label: "Adults", minLimit: 1 },
+    { id: "children", label: "Children", minLimit: 0 },
+    { id: "room", label: "Rooms", minLimit: 1 },
+  ];
 
   return (
-    <div className="guestOptions" ref={optionRef}>
-      <OptionItem
-        type="adult"
-        options={options}
-        minLimit={1}
-        handleOptions={handleOptions}
-      />
-      <OptionItem
-        type="children"
-        options={options}
-        minLimit={0}
-        handleOptions={handleOptions}
-      />
-      <OptionItem
-        type="room"
-        options={options}
-        minLimit={1}
-        handleOptions={handleOptions}
-      />
+    <div className="search-card__options">
+      {guestCategories.map((item) => (
+        <OptionItem
+          key={item.id}
+          type={item.id}
+          label={item.label}
+          options={options}
+          minLimit={item.minLimit}
+          handleOptions={handleOptions}
+        />
+      ))}
     </div>
   );
 }
 
-function OptionItem({ type, options, minLimit, handleOptions }) {
+function OptionItem({ type, label, options, minLimit, handleOptions }) {
   return (
-    <div className="guestOptionItem">
-      <span className="optionText">{type}</span>
-      <div className="optionCounter">
+    <div className="search-card__option">
+      <p className="search-card__option-title">{label}</p>
+      <div className="search-card__option-count">
         <button
-          className="optionCounterBtn"
+          type="button"
+          className="search-card__option-btn search-card__option-btn--minus"
           onClick={() => handleOptions(type, "dec")}
           disabled={options[type] <= minLimit}
         >
-          <HiMinus className="icon" />
+          <HiMinus />
         </button>
-        <span className="optionCounterNumber">{options[type]}</span>
+        <span className="search-card__option-number">{options[type]}</span>
         <button
-          className="optionCounterBtn"
+          type="button"
+          className="search-card__option-btn search-card__option-btn--plus"
           onClick={() => handleOptions(type, "inc")}
         >
-          <HiPlus className="icon" />
+          <HiPlus />
         </button>
       </div>
     </div>
@@ -353,22 +236,35 @@ function OptionItem({ type, options, minLimit, handleOptions }) {
 function User() {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
+
   const handleLogout = () => {
     logout();
     navigate("/");
   };
 
   return (
-    <div>
+    <div className="hero-header__actions">
+      {isAuthenticated && (
+        <NavLink to="/bookmark" className="hero-header__action glass-box">
+          <HiOutlineBookmark className="icon" />
+        </NavLink>
+      )}
       {isAuthenticated ? (
-        <div>
-          <span>{user.name}</span>
-          <button>
-            <HiLogout className="icon" onClick={handleLogout} />
-          </button>
-        </div>
+        <button
+          onClick={handleLogout}
+          className="hero-header__action glass-box"
+          title="Logout"
+        >
+          <IoLogOutOutline className="icon" />
+        </button>
       ) : (
-        <NavLink to="/login">login</NavLink>
+        <NavLink
+          to="/login"
+          className="hero-header__action glass-box"
+          title="Login"
+        >
+          <HiOutlineUser className="icon" />
+        </NavLink>
       )}
     </div>
   );
