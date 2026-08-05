@@ -5,11 +5,13 @@ import { useHotels } from "../context/HotelsProvider";
 function AppLayout() {
   const { hotels } = useHotels();
   return (
-    <div className="appLayout">
-      <div className="sidebar">
+    <div className="app-layout">
+      <div className="app-layout__sidebar">
         <Outlet />
       </div>
-      <Map markerLocations={hotels} />
+      <div className="app-layout__map">
+        <Map markerLocations={hotels} />
+      </div>
     </div>
   );
 }

@@ -333,6 +333,32 @@
   font-size: var(--text-lg);
 }
 
+/* ** AppLayout Component */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 200px);
+  max-width: 1280px;
+  margin: var(--space-md) auto;
+  gap: var(--space-md);
+  padding: 0 var(--space-md);
+}
+
+.app-layout__sidebar {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-layout__map {
+  height: 350px;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
 /* ** Media Query */
 @media screen and (min-width: 768px) {
   .header {
