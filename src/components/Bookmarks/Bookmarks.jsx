@@ -7,33 +7,39 @@ function Bookmarks() {
   const { bookmarks, isLoading, currentBookmark, deleteBookmark } =
     useBookmark();
 
-  const handleDelete = async(e, id) => {
+  const handleDelete = async (e, id) => {
     e.preventDefault();
     await deleteBookmark(id);
   };
 
   if (isLoading) return <div>Loading...</div>;
-  if (!bookmarks.length) return <div>No Bookmark Location</div>
+  if (!bookmarks.length) return <div>No Bookmark Location</div>;
 
   return (
-    <div>
-      <h2>Bookmark List</h2>
-      <div className="bookmarkList">
+    <div className="bookmark-list">
+      <h2 className="bookmark-list__title">Bookmark List</h2>
+      <div className="bookmark-list__items">
         {bookmarks.map((item) => (
           <Link
             key={item.id}
             to={`${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
+            className="bookmark-list__link"
           >
             <div
-              className={`bookmarkItem ${item.id === currentBookmark?.id ? "current-bookmark" : ""}`}
+              className={`bookmark-card ${
+                item.id === currentBookmark?.id ? "bookmark-card--active" : ""
+              }`}
             >
-              <div>
+              <div className="bookmark-card__content">
                 <ReactCountryFlag svg countryCode={item.countryCode} />
-                &nbsp; <strong>{item.cityName}</strong> &nbsp;
-                <span>{item.country}</span>
+                <strong className="bookmark-card__city">{item.cityName}</strong>
+                <span className="bookmark-card__country">{item.country}</span>
               </div>
-              <button onClick={(e) => handleDelete(e, item.id)}>
-                <HiTrash className="trash" />
+              <button
+                className="bookmark-card__trash-btn"
+                onClick={(e) => handleDelete(e, item.id)}
+              >
+                <HiTrash className="bookmark-card__trash-icon" />
               </button>
             </div>
           </Link>
