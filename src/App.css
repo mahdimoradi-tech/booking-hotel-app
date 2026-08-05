@@ -421,6 +421,33 @@
   background-color: var(--color-secondary);
 }
 
+/* ** SingleHotel Component */
+.single-hotel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.single-hotel__title {
+  font-size: var(--text-xl);
+  color: var(--color-primary);
+}
+
+.single-hotel__meta {
+  font-size: var(--text-sm);
+  color: var(--text-color-gray);
+  margin-bottom: var(--space-sm);
+}
+
+.single-hotel__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
 /* ** Media Query */
 @media screen and (min-width: 768px) {
   .header {
@@ -458,6 +485,22 @@
     border-top-right-radius: calc(var(--radius-md) - 2px);
     border-bottom-right-radius: calc(var(--radius-md) - 2px);
     padding: 0 var(--space-xl);
+  }
+
+  .app-layout {
+    flex-direction: row;
+    height: calc(100vh - 130px);
+    gap: var(--space-lg);
+  }
+
+  .app-layout__sidebar {
+    width: 45%;
+    padding-right: var(--space-xs);
+  }
+
+  .app-layout__map {
+    width: 55%;
+    height: 100%;
   }
 }
 
