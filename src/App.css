@@ -362,6 +362,40 @@
 
 /* ** Hotels Component |=> this section merged with LocationList Component */
 
+/* ** Map Component */
+.map-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.map-container__view {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.map-container__btn-location {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: var(--space-lg);
+  z-index: 1000;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-xs) var(--space-md);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-fast);
+}
+
+.map-container__btn-location:hover {
+  background-color: var(--color-secondary);
+}
+
 /* ** Media Query */
 @media screen and (min-width: 768px) {
   .header {

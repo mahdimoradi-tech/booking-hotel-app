@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useHotels } from "../context/HotelsProvider";
 import {
   MapContainer,
   TileLayer,
@@ -31,15 +30,15 @@ function Map({ markerLocations }) {
   }, [getCurrentPosition]);
 
   return (
-    <div className="mapContainer">
+    <div className="map-container">
       <MapContainer
-        className="map"
+        className="map-container__view"
         center={mapCenter}
         zoom={13}
         scrollWheelZoom={true}
       >
-        <button className="getLocation" onClick={getPosition}>
-          {isLoadingPosition ? "Loading..." : "use your location"}
+        <button className="map-container__btn-location" onClick={getPosition}>
+          {isLoadingPosition ? "Loading..." : "Use Your Location"}
         </button>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
