@@ -361,6 +361,31 @@
 }
 
 /* ** Hotels Component |=> this section merged with LocationList Component */
+.hotel-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel-list__title {
+  font-size: var(--text-lg);
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+}
+
+.hotel-list__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.hotel-list__link {
+  display: block;
+}
+
+.hotel-card--active {
+  border: 2px solid var(--color-accent);
+  transform: translateY(-2px);
+}
 
 /* ** Map Component */
 .map-container {
