@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useHotels } from "../context/HotelsProvider";
 import {
   MapContainer,
   TileLayer,
