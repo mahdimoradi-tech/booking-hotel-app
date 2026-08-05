@@ -19,10 +19,10 @@ function SingleHotel() {
         {currentHotel.number_of_reviews} reviews &bull;{" "}
         {currentHotel.smart_location}
       </div>
-      <img 
-        className="single-hotel__image" 
-        src={currentHotel.xl_picture_url} 
-        alt={currentHotel.name} 
+      <img
+        className="single-hotel__image"
+        src={currentHotel.xl_picture_url}
+        alt={currentHotel.name}
       />
     </div>
   );
