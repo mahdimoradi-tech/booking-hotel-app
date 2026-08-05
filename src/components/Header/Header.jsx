@@ -4,6 +4,7 @@ import {
   HiCalendar,
   HiLogout,
   HiMinus,
+  HiOutlineUser,
   HiPlus,
   HiSearch,
 } from "react-icons/hi";
@@ -19,6 +20,8 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
+import { HiOutlineBookmark } from "react-icons/hi2";
+import { IoLogOutOutline } from "react-icons/io5";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -66,38 +69,42 @@ function Header() {
   return (
     <div className="header">
       <NavLink to="/bookmark">Bookmarks</NavLink>
-      <div className="headerSearch">
-        <div className="headerSearchItem">
-          <MdLocationOn className="headerIcon locationIcon" />
+      <div className="header__search">
+        <div className="header__search-item">
+          <MdLocationOn className="header__icon location__icon" />
           <input
             value={destination}
             type="text"
             onChange={(e) => setDestination(e.target.value)}
             placeholder="where to go...?"
-            className="headerSearchInput"
+            className="header__search-input"
             name="destination"
             id="destination"
           />
-          <span className="seperator"></span>
         </div>
-        <div className="headerSearchItem">
-          <HiCalendar className="headerIcon dateIcon" />
-          <div className="dateDropDown" onClick={() => setOpenDate(!openDate)}>
+        <div className="header__search-item">
+          <HiCalendar className="header__icon date-icon" />
+          <div
+            className="header__date-drop-down"
+            onClick={() => setOpenDate(!openDate)}
+          >
             {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
           </div>
           {openDate && (
             <DateRange
-              className="date"
+              className="header__date"
               ranges={date}
               onChange={(item) => setDate([item.selection])}
               minDate={new Date()}
               moveRangeOnFirstSelection={true}
             />
           )}
-          <span className="seperator"></span>
         </div>
-        <div className="headerSearchItem">
-          <div id="optionDropDown" onClick={() => setOpenOptions(!openOptions)}>
+        <div className="header__search-item">
+          <div
+            id="header__option-drop-down"
+            onClick={() => setOpenOptions(!openOptions)}
+          >
             {options.adult} adult &bull; {options.children} children &bull;{" "}
             {options.room} room
           </div>
@@ -108,14 +115,11 @@ function Header() {
               setOpenOptions={setOpenOptions}
             />
           )}
+        </div>
 
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <button className="headerSearchBtn" onClick={handleSearch}>
-            <HiSearch className="headerIcon" />
-          </button>
-        </div>
+        <button className="header__search-btn" onClick={handleSearch}>
+          Search
+        </button>
       </div>
       <User />
     </div>
@@ -129,7 +133,7 @@ function GuestOptionList({ options, handleOptions, setOpenOptions }) {
   useOutSideClick(optionRef, () => setOpenOptions(false));
 
   return (
-    <div className="guestOptions" ref={optionRef}>
+    <div className="header__guest-options" ref={optionRef}>
       <OptionItem
         type="adult"
         options={options}
@@ -154,19 +158,21 @@ function GuestOptionList({ options, handleOptions, setOpenOptions }) {
 
 function OptionItem({ type, options, minLimit, handleOptions }) {
   return (
-    <div className="guestOptionItem">
-      <span className="optionText">{type}</span>
-      <div className="optionCounter">
+    <div className="header__guest-option-item">
+      <span className="header__guest-option-text">{type}</span>
+      <div className="header__guest-option-counter">
         <button
-          className="optionCounterBtn"
+          className="header__guest-option-counter-btn"
           onClick={() => handleOptions(type, "dec")}
           disabled={options[type] <= minLimit}
         >
           <HiMinus className="icon" />
         </button>
-        <span className="optionCounterNumber">{options[type]}</span>
+        <span className="header__guest-option-counter-name">
+          {options[type]}
+        </span>
         <button
-          className="optionCounterBtn"
+          className="header__guest-option-counter-btn"
           onClick={() => handleOptions(type, "inc")}
         >
           <HiPlus className="icon" />
@@ -178,23 +184,31 @@ function OptionItem({ type, options, minLimit, handleOptions }) {
 
 function User() {
   const navigate = useNavigate();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const handleLogout = () => {
     logout();
     navigate("/");
   };
 
   return (
-    <div>
+    <div className="header__actions">
+      {isAuthenticated && (
+        <NavLink to="/bookmark" className="header__action glass-box">
+          <HiOutlineBookmark className="icon" />
+        </NavLink>
+      )}
       {isAuthenticated ? (
-        <div>
-          <span>{user.name}</span>
-          <button>
-            <HiLogout className="icon" onClick={handleLogout} />
-          </button>
-        </div>
+        <button
+          onClick={handleLogout}
+          className="header__action glass-box"
+          title="Logout"
+        >
+          <IoLogOutOutline className="icon" />
+        </button>
       ) : (
-        <NavLink to="/login">login</NavLink>
+        <NavLink to="/login" className="header__action glass-box" title="Login">
+          <HiOutlineUser className="icon" />
+        </NavLink>
       )}
     </div>
   );

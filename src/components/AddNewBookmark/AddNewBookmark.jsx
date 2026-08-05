@@ -36,7 +36,6 @@ function AddNewBookmark() {
         setCountry(data.countryName);
         setCountryCode(data.countryCode);
       } catch (error) {
-        // toast.error(error.message);
         setGeoCodeError(error.message);
       } finally {
         setIsLoadingGeoCode(false);
@@ -63,15 +62,18 @@ function AddNewBookmark() {
   };
 
   if (isLoadingGeoCode) return <p>Loading...</p>;
-  if (geoCodeError) return <p>{geoCodeError}</p>; //todo: create a component for this section
+  if (geoCodeError) return <p>{geoCodeError}</p>;
 
   return (
-    <div>
-      <h2>Bookmark New location</h2>
-      <form action="" className="form">
-        <div className="formControl">
-          <label htmlFor="cityName">City Name</label>
+    <div className="bookmark-form-container">
+      <h2 className="bookmark-form__title">Bookmark New location</h2>
+      <form className="bookmark-form">
+        <div className="bookmark-form__control">
+          <label className="bookmark-form__label" htmlFor="cityName">
+            City Name
+          </label>
           <input
+            className="bookmark-form__input"
             value={cityName}
             onChange={(e) => setCityName(e.target.value)}
             type="text"
@@ -79,19 +81,25 @@ function AddNewBookmark() {
             id="cityName"
           />
         </div>
-        <div className="formControl">
-          <label htmlFor="country">Country</label>
+        <div className="bookmark-form__control">
+          <label className="bookmark-form__label" htmlFor="country">
+            Country
+          </label>
           <input
+            className="bookmark-form__input"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             type="text"
             name="country"
             id="country"
           />
-          <ReactCountryFlag className="flag" svg countryCode={countryCode} />
-          {/* <span className="flag">{countryCode}</span> //todo: create a function in js to show flag of country  */}
+          <ReactCountryFlag
+            className="bookmark-form__flag"
+            svg
+            countryCode={countryCode}
+          />
         </div>
-        <div className="buttons">
+        <div className="bookmark-form__actions">
           <button
             className="btn btn--back"
             onClick={(e) => {

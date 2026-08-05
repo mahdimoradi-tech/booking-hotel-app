@@ -5,11 +5,13 @@ import { useBookmark } from "../context/BookmarkProvider";
 function BookmarkLayout() {
   const { bookmarks } = useBookmark();
   return (
-    <div className="appLayout">
-      <div className="sidebar">
+    <div className="app-layout">
+      <div className="app-layout__sidebar">
         <Outlet />
       </div>
-      <Map markerLocations={bookmarks} />
+      <div className="app-layout__map">
+        <Map markerLocations={bookmarks} />
+      </div>
     </div>
   );
 }
