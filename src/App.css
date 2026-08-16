@@ -67,7 +67,8 @@
 }
 
 .header__icon {
-  font-size: var(--text-xl);
+  width: var(--space-lg);
+  height: var(--space-lg);
   color: var(--color-secondary);
 }
 
@@ -289,6 +290,8 @@
 
 .hotel-card__location-icon,
 .hotel-card__location-code {
+  width: var(--space-lg);
+  height: var(--space-lg);
   flex-shrink: 0;
 }
 

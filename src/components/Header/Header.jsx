@@ -1,13 +1,5 @@
 import { useRef, useState } from "react";
-import { MdLocationOn } from "react-icons/md";
-import {
-  HiCalendar,
-  HiLogout,
-  HiMinus,
-  HiOutlineUser,
-  HiPlus,
-  HiSearch,
-} from "react-icons/hi";
+import { HiCalendar, HiMinus, HiOutlineUser, HiPlus } from "react-icons/hi";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -22,6 +14,7 @@ import {
 import { useAuth } from "../context/AuthProvider";
 import { HiOutlineBookmark } from "react-icons/hi2";
 import { IoLogOutOutline } from "react-icons/io5";
+import { MapPinIcon } from "@heroicons/react/16/solid";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -71,7 +64,7 @@ function Header() {
       <NavLink to="/bookmark">Bookmarks</NavLink>
       <div className="header__search">
         <div className="header__search-item">
-          <MdLocationOn className="header__icon location__icon" />
+          <MapPinIcon className="header__icon location__icon" />
           <input
             value={destination}
             type="text"

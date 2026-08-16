@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useHotels } from "../context/HotelsProvider";
-import { IoLocationOutline } from "react-icons/io5";
+import { MapPinIcon } from "@heroicons/react/24/outline";
 
 export default function Hotels() {
   const { hotels, isLoading, currentHotel } = useHotels();
@@ -36,7 +36,7 @@ export default function Hotels() {
                   <div className="hotel-card__details">
                     <h3 className="hotel-card__title">{item.name}</h3>
                     <span className="hotel-card__location">
-                      <IoLocationOutline className="hotel-card__location-icon" />
+                      <MapPinIcon className="hotel-card__location-icon" />
                       <p className="hotel-card__location-text">
                         {item.smart_location}
                       </p>
