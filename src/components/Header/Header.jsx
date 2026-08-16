@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { HiCalendar, HiMinus, HiOutlineUser, HiPlus } from "react-icons/hi";
+import { HiCalendar, HiMinus, HiPlus } from "react-icons/hi";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -12,9 +12,10 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
-import { HiOutlineBookmark } from "react-icons/hi2";
-import { IoLogOutOutline } from "react-icons/io5";
 import { MapPinIcon } from "@heroicons/react/16/solid";
+import { UserIcon } from "@heroicons/react/24/outline";
+import { BookmarkIcon } from "@heroicons/react/24/outline";
+import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -187,7 +188,7 @@ function User() {
     <div className="header__actions">
       {isAuthenticated && (
         <NavLink to="/bookmark" className="header__action glass-box">
-          <HiOutlineBookmark className="icon" />
+          <BookmarkIcon className="icon" />
         </NavLink>
       )}
       {isAuthenticated ? (
@@ -196,11 +197,11 @@ function User() {
           className="header__action glass-box"
           title="Logout"
         >
-          <IoLogOutOutline className="icon" />
+          <ArrowRightOnRectangleIcon className="icon" />
         </button>
       ) : (
         <NavLink to="/login" className="header__action glass-box" title="Login">
-          <HiOutlineUser className="icon" />
+          <UserIcon className="icon" />
         </NavLink>
       )}
     </div>
