@@ -1,3 +1,43 @@
+/* Typography Utility Classes */
+.text-display {
+  font: var(--font-display);
+  letter-spacing: -0.02em;
+  font-family: var(--font-primary);
+}
+.text-h1 {
+  font: var(--font-h1);
+  letter-spacing: -0.02em;
+  font-family: var(--font-primary);
+}
+.text-h2 {
+  font: var(--font-h2);
+  letter-spacing: -0.01em;
+  font-family: var(--font-primary);
+}
+.text-h3 {
+  font: var(--font-h3);
+  font-family: var(--font-primary);
+}
+.text-body {
+  font: var(--font-body);
+  font-family: var(--font-primary);
+}
+.text-caption {
+  font: var(--font-caption);
+  font-family: var(--font-primary);
+  color: var(--text-color-gray);
+}
+.text-label {
+  font: var(--font-label);
+  font-family: var(--font-primary);
+}
+
+/* Icons Utility Classes */
+.icon {
+  width: var(--space-lg);
+  height: var(--space-lg);
+}
+
 /* ** Header Component */
 .header {
   background-color: var(--color-primary);
@@ -67,7 +107,8 @@
 }
 
 .header__icon {
-  font-size: var(--text-xl);
+  width: var(--space-lg);
+  height: var(--space-lg);
   color: var(--color-secondary);
 }
 
@@ -289,6 +330,8 @@
 
 .hotel-card__location-icon,
 .hotel-card__location-code {
+  width: var(--space-lg);
+  height: var(--space-lg);
   flex-shrink: 0;
 }
 
@@ -540,7 +583,8 @@
 
 .bookmark-card__trash-icon {
   color: var(--color-danger);
-  font-size: var(--text-lg);
+  width: var(--space-lg);
+  height: var(--space-lg);
 }
 
 /* ** SingleBookmark Component */

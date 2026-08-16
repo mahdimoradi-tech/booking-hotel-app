@@ -1,6 +1,5 @@
-import { IoLocationOutline } from "react-icons/io5";
 import useFetch from "../../hooks/useFetch";
-import { HiOutlineBookmark, HiOutlineHeart } from "react-icons/hi2";
+import { HeartIcon, MapPinIcon } from "@heroicons/react/24/outline";
 
 const BASE_URL = "https://booking-hotel-app-api.onrender.com";
 
@@ -25,7 +24,7 @@ function LocationList() {
                 <span className="hotel-card__badge">{item.room_type}</span>
 
                 <button type="button" className="hotel-card__like-action">
-                  <HiOutlineHeart className="icon icon--heart" />
+                  <HeartIcon className="icon icon--heart" />
                 </button>
                 <div className="hotel-card__stars">⭐⭐⭐</div>
               </div>
@@ -35,7 +34,7 @@ function LocationList() {
                   <div className="hotel-card__details">
                     <h3 className="hotel-card__title">{item.name}</h3>
                     <span className="hotel-card__location">
-                      <IoLocationOutline className="hotel-card__location-icon" />
+                      <MapPinIcon className="hotel-card__location-icon" />
                       <p className="hotel-card__location-text">
                         {item.smart_location}
                       </p>

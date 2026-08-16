@@ -1,13 +1,4 @@
 import { useRef, useState } from "react";
-import { MdLocationOn } from "react-icons/md";
-import {
-  HiCalendar,
-  HiLogout,
-  HiMinus,
-  HiOutlineUser,
-  HiPlus,
-  HiSearch,
-} from "react-icons/hi";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -20,8 +11,17 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
-import { HiOutlineBookmark } from "react-icons/hi2";
-import { IoLogOutOutline } from "react-icons/io5";
+import {
+  CalendarDateRangeIcon,
+  MapPinIcon,
+  MinusIcon,
+  PlusIcon,
+} from "@heroicons/react/16/solid";
+import {
+  BookmarkIcon,
+  UserIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -71,7 +71,7 @@ function Header() {
       <NavLink to="/bookmark">Bookmarks</NavLink>
       <div className="header__search">
         <div className="header__search-item">
-          <MdLocationOn className="header__icon location__icon" />
+          <MapPinIcon className="header__icon location__icon" />
           <input
             value={destination}
             type="text"
@@ -83,7 +83,7 @@ function Header() {
           />
         </div>
         <div className="header__search-item">
-          <HiCalendar className="header__icon date-icon" />
+          <CalendarDateRangeIcon className="header__icon date-icon" />
           <div
             className="header__date-drop-down"
             onClick={() => setOpenDate(!openDate)}
@@ -166,7 +166,7 @@ function OptionItem({ type, options, minLimit, handleOptions }) {
           onClick={() => handleOptions(type, "dec")}
           disabled={options[type] <= minLimit}
         >
-          <HiMinus className="icon" />
+          <MinusIcon className="icon" />
         </button>
         <span className="header__guest-option-counter-name">
           {options[type]}
@@ -175,7 +175,7 @@ function OptionItem({ type, options, minLimit, handleOptions }) {
           className="header__guest-option-counter-btn"
           onClick={() => handleOptions(type, "inc")}
         >
-          <HiPlus className="icon" />
+          <PlusIcon className="icon" />
         </button>
       </div>
     </div>
@@ -194,7 +194,7 @@ function User() {
     <div className="header__actions">
       {isAuthenticated && (
         <NavLink to="/bookmark" className="header__action glass-box">
-          <HiOutlineBookmark className="icon" />
+          <BookmarkIcon className="icon" />
         </NavLink>
       )}
       {isAuthenticated ? (
@@ -203,11 +203,11 @@ function User() {
           className="header__action glass-box"
           title="Logout"
         >
-          <IoLogOutOutline className="icon" />
+          <ArrowRightOnRectangleIcon className="icon" />
         </button>
       ) : (
         <NavLink to="/login" className="header__action glass-box" title="Login">
-          <HiOutlineUser className="icon" />
+          <UserIcon className="icon" />
         </NavLink>
       )}
     </div>
