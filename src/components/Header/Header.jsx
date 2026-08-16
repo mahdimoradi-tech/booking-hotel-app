@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { HiCalendar, HiMinus, HiPlus } from "react-icons/hi";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -12,10 +11,17 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
-import { MapPinIcon } from "@heroicons/react/16/solid";
-import { UserIcon } from "@heroicons/react/24/outline";
-import { BookmarkIcon } from "@heroicons/react/24/outline";
-import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
+import {
+  CalendarDateRangeIcon,
+  MapPinIcon,
+  MinusIcon,
+  PlusIcon,
+} from "@heroicons/react/16/solid";
+import {
+  BookmarkIcon,
+  UserIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -77,7 +83,7 @@ function Header() {
           />
         </div>
         <div className="header__search-item">
-          <HiCalendar className="header__icon date-icon" />
+          <CalendarDateRangeIcon className="header__icon date-icon" />
           <div
             className="header__date-drop-down"
             onClick={() => setOpenDate(!openDate)}
@@ -160,7 +166,7 @@ function OptionItem({ type, options, minLimit, handleOptions }) {
           onClick={() => handleOptions(type, "dec")}
           disabled={options[type] <= minLimit}
         >
-          <HiMinus className="icon" />
+          <MinusIcon className="icon" />
         </button>
         <span className="header__guest-option-counter-name">
           {options[type]}
@@ -169,7 +175,7 @@ function OptionItem({ type, options, minLimit, handleOptions }) {
           className="header__guest-option-counter-btn"
           onClick={() => handleOptions(type, "inc")}
         >
-          <HiPlus className="icon" />
+          <PlusIcon className="icon" />
         </button>
       </div>
     </div>
