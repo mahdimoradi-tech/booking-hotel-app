@@ -1,3 +1,43 @@
+/* Typography Utility Classes */
+.text-display {
+  font: var(--font-display);
+  letter-spacing: -0.02em;
+  font-family: var(--font-primary);
+}
+.text-h1 {
+  font: var(--font-h1);
+  letter-spacing: -0.02em;
+  font-family: var(--font-primary);
+}
+.text-h2 {
+  font: var(--font-h2);
+  letter-spacing: -0.01em;
+  font-family: var(--font-primary);
+}
+.text-h3 {
+  font: var(--font-h3);
+  font-family: var(--font-primary);
+}
+.text-body {
+  font: var(--font-body);
+  font-family: var(--font-primary);
+}
+.text-caption {
+  font: var(--font-caption);
+  font-family: var(--font-primary);
+  color: var(--text-color-gray);
+}
+.text-label {
+  font: var(--font-label);
+  font-family: var(--font-primary);
+}
+
+/* Icons Utility Classes */
+.icon {
+  width: var(--space-lg);
+  height: var(--space-lg);
+}
+
 /* ** Header Component */
 .header {
   background-color: var(--color-primary);
@@ -779,9 +819,4 @@
     z-index: 1;
     border-radius: var(--radius-lg);
   }
-}
-
-.icon {
-  width: var(--space-lg);
-  height: var(--space-lg);
 }
