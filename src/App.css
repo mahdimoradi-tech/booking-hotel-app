@@ -543,7 +543,8 @@
 
 .bookmark-card__trash-icon {
   color: var(--color-danger);
-  font-size: var(--text-lg);
+  width: var(--space-lg);
+  height: var(--space-lg);
 }
 
 /* ** SingleBookmark Component */
@@ -780,7 +781,7 @@
   }
 }
 
-.icon{
+.icon {
   width: var(--space-lg);
   height: var(--space-lg);
 }

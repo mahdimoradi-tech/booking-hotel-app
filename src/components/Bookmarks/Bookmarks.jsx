@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useBookmark } from "../context/BookmarkProvider";
 import ReactCountryFlag from "react-country-flag";
-import { HiTrash } from "react-icons/hi";
+import { TrashIcon } from "@heroicons/react/16/solid";
 
 function Bookmarks() {
   const { bookmarks, isLoading, currentBookmark, deleteBookmark } =
@@ -39,7 +39,7 @@ function Bookmarks() {
                 className="bookmark-card__trash-btn"
                 onClick={(e) => handleDelete(e, item.id)}
               >
-                <HiTrash className="bookmark-card__trash-icon" />
+                <TrashIcon className="bookmark-card__trash-icon" />
               </button>
             </div>
           </Link>
