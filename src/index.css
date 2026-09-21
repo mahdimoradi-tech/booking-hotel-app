@@ -14,6 +14,14 @@
   --color-glass-mid-dark: rgba(255, 255, 255, 0.19);
   --color-glass-light: rgba(255, 255, 255, 0.47);
 
+  /* Semantic Colors */
+  --color-primary-hover: #0a1840;
+  --color-accent-soft: #fef9e7;
+  --color-surface-elevated: #ffffff;
+  --color-surface-sunken: #e2e8f0;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+
   /* typography */
   --font-primary: "Plus Jakarta Sans", sans-serif;
 
@@ -58,9 +66,13 @@
   --color-border-light: rgba(255, 255, 255, 0.24);
   --color-border-mid-dark: rgba(182, 176, 176, 0.24);
 
-  /* shadows */
+  /* shadows & elevation */
+  --shadow-xs: 0 1px 2px rgba(13, 31, 78, 0.04);
   --shadow-sm: 0 4px 6px rgba(13, 31, 78, 0.05);
   --shadow-md: 0 8px 24px rgba(13, 31, 78, 0.08);
+  --shadow-lg: 0 16px 48px rgba(13, 31, 78, 0.12);
+  --shadow-xl: 0 24px 64px rgba(13, 31, 78, 0.16);
+  --shadow-focus: 0 0 0 3px rgba(0, 108, 228, 0.25);
 
   /* transitions */
   --transition-fast: 0.2s ease-in-out;
