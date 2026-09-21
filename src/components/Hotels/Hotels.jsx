@@ -46,7 +46,7 @@ export default function Hotels() {
 
                 <div className="hotel-card__review">
                   <div className="hotel-card__price">
-                    <h3 className="hotel-card__price-number">€{item.price}</h3>
+                    <h3 className="hotel-card__price-number">${item.price}</h3>
                     <span className="hotel-card__time">/night</span>
                   </div>
                 </div>
