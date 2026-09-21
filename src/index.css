@@ -14,6 +14,14 @@
   --color-glass-mid-dark: rgba(255, 255, 255, 0.19);
   --color-glass-light: rgba(255, 255, 255, 0.47);
 
+  /* Semantic Colors */
+  --color-primary-hover: #0a1840;
+  --color-accent-soft: #fef9e7;
+  --color-surface-elevated: #ffffff;
+  --color-surface-sunken: #e2e8f0;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+
   /* typography */
   --font-primary: "Plus Jakarta Sans", sans-serif;
 
